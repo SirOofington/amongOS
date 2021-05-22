@@ -47,5 +47,5 @@ while true do
     term.clear()
     draw_header()
     draw_apps(apps,selected_app)
-    
+    os.sleep(2)
 end
