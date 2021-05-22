@@ -36,14 +36,18 @@ end
 function cycle_apps()
     local _,key = os.pullEvent("key")
     if key == keys.up then
-        selected_app = (selected_app % #apps) - 1
+        selected_app = selected_app - 1
+        selected_app = (selected_app + 1) % #apps
+        selected_app = selected_app + 1
     end
     if key == keys.down then
-        selected_app = (selected_app % #apps) + 1
+        selected_app = selected_app - 1
+        selected_app = (selected_app - 1) % #apps
+        selected_app = selected_app + 1
     end
-    --if key == keys.enter then
-    --    apps[selected_app]["func"]()
-    --end
+    if key == keys.enter then
+        apps[selected_app]["func"]()
+    end
 
 end
 
