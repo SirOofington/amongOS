@@ -1,4 +1,4 @@
-version = "1.0"
+version = "v1.0"
 w, h = term.getSize()
 selected_app = 1
 apps = {}
@@ -12,7 +12,7 @@ function draw_header()
     
     term.setTextColor(colors.yellow)
     term.setCursorPos(1,1)
-    term.write(string.format("pogOS %d",version))
+    term.write(string.format("pogOS %s",version))
 
     term.setCursorPos(w - string.len("ID: *****") + 1,1)
     term.write(string.format("ID: %5d",os.getComputerID()))
@@ -40,17 +40,17 @@ end
 
 function cycle_apps()
     local _,key = os.pullEvent("key")
-    if key == keys.up then
+    if key == keys.down then
         selected_app = selected_app - 1
         selected_app = (selected_app + 1) % #apps
         selected_app = selected_app + 1
     end
-    if key == keys.down then
+    if key == keys.up then
         selected_app = selected_app - 1
         selected_app = (selected_app - 1) % #apps
         selected_app = selected_app + 1
     end
-    if key == keys.enter then
+    if key == keys.enter or key == keys.space then
         apps[selected_app]["func"]()
     end
 
