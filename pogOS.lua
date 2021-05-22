@@ -5,7 +5,7 @@ apps = {}
 function draw_header()
     paintutils.drawFilledBox(1,1,w,h,colors.black)
     for i=1,w do
-        paintutils.drawPixel(i,1,colors.LightGray)
+        paintutils.drawPixel(i,1,colors.gray)
     end
     
     term.setTextColor(colors.black)
