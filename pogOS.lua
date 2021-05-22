@@ -8,7 +8,7 @@ function draw_header()
         paintutils.drawPixel(i,1,colors.gray)
     end
     
-    term.setTextColor(colors.black)
+    term.setTextColor(colors.yellow)
     term.setCursorPos(1,1)
     term.write("pogOS")
 
@@ -55,7 +55,7 @@ function app_exit()
     term.clear()
     draw_header()
     term.setCursorPos(1,2)
-    term.setTextColor(colors.black)
+    term.setTextColor(colors.white)
     term.write("Shutting down...")
     term.setCursorBlink(false)
     os.sleep(5)
@@ -63,7 +63,7 @@ function app_exit()
 end
 
 apps = {
-    {name="Snake",func=app_exit},
+    {name="Snake",func=function() shell.run("worm") end},
     {name="Exit",func=app_exit}
 }
 
