@@ -1,30 +1,50 @@
 local w, h = term.getSize()
 local selected_app = 1
+local apps = {}
 
 function draw_header()
-    paintutils.drawFilledBox(1,1,w,h,colors.lightBlue)
+    paintutils.drawFilledBox(1,1,w,h,colors.black)
     for i=1,w do
-        paintutils.drawPixel(i,1,colors.black)
+        paintutils.drawPixel(i,1,colors.LightGray)
     end
     
-    term.setTextColor(colors.white)
+    term.setTextColor(colors.black)
     term.setCursorPos(1,1)
     term.write("pogOS")
 
     term.setCursorPos(w - string.len("ID: *****") + 1,1)
     term.write(string.format("ID: %5d",os.getComputerID()))
 
-    term.setBackgroundColor(colors.lightBlue)
+    term.setBackgroundColor(colors.black)
     term.setCursorPos(0,0)
 end
 
-function draw_apps(app_list,selected_app)
-    term.setTextColor(colors.black)
-    for i=1,#app_list do
+function draw_apps()
+    for i=1,#apps do
+        term.setTextColor(colors.white)
+        term.setBackgroundColor(colors.black)
+        if i == selected_app then
+            term.setTextColor(colors.black)
+            term.setBackgroundColor(colors.white)
+        end
         term.setCursorPos(1,i + 2)
-        term.write(app_list[i]["name"])
+        term.write(apps[i]["name"])
     end
     term.setCursorPos(0,0)
+end
+
+function cycle_apps()
+    local _,key = os.pullEvent("key")
+    if key == keys.up then
+        selected_app = (selected_app % #apps) - 1
+    end
+    if key == keys.down then
+        selected_app = (selected_app % #apps) + 1
+    end
+    if key == keys.enter then
+        apps[selected_app]["func"]()
+    end
+
 end
 
 function app_exit()
@@ -37,7 +57,6 @@ function app_exit()
     os.sleep(5)
     os.shutdown()
 end
-
 local apps = {
     {name="Snake",func=function() shell.run("worm") end},
     {name="Exit",func=app_exit}
@@ -46,6 +65,6 @@ local apps = {
 while true do
     term.clear()
     draw_header()
-    draw_apps(apps,selected_app)
-    os.sleep(2)
+    cycle_apps()
+    draw_apps()
 end
