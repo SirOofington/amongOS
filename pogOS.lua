@@ -1,4 +1,4 @@
-local w, h = term.getSize()
+w, h = term.getSize()
 selected_app = 1
 apps = {}
 
