@@ -6,22 +6,22 @@ function draw_header()
     for i=1,w do
         paintutils.drawPixel(i,1,colors.black)
     end
-
+    
     term.setTextColor(colors.white)
     term.setCursorPos(1,1)
     term.write("pogOS")
 
-    term.setCursorPos(w - string.len("ID: *****") + 2,1)
+    term.setCursorPos(w - string.len("ID: *****") + 1,1)
     term.write(string.format("ID: %5d",os.getComputerID()))
 
-    term.setBackgroundColor(colors.black)
+    term.setBackgroundColor(colors.lightBlue)
     term.setCursorPos(0,0)
 end
 
 function draw_apps(app_list,selected_app)
     term.setTextColor(colors.white)
     for i=1,#app_list do
-        term.setCursorPos(1,i + 1)
+        term.setCursorPos(1,i + 2)
         term.write(app_list[i]["name"])
     end
     term.setCursorPos(0,0)
