@@ -65,6 +65,6 @@ local apps = {
 while true do
     term.clear()
     draw_header()
-    cycle_apps()
     draw_apps()
+    cycle_apps()
 end
