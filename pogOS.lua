@@ -19,7 +19,7 @@ function draw_header()
 end
 
 function draw_apps(app_list,selected_app)
-    term.setTextColor(colors.white)
+    term.setTextColor(colors.black)
     for i=1,#app_list do
         term.setCursorPos(1,i + 2)
         term.write(app_list[i]["name"])
@@ -31,7 +31,7 @@ function app_exit()
     term.clear()
     draw_header()
     term.setCursorPos(1,2)
-    term.setTextColor(colors.white)
+    term.setTextColor(colors.black)
     term.write("Shutting down...")
     term.setCursorBlink(false)
     os.sleep(5)
