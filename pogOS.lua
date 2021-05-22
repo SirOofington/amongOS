@@ -1,6 +1,6 @@
 local w, h = term.getSize()
-local selected_app = 1
-local apps = {}
+selected_app = 1
+apps = {}
 
 function draw_header()
     paintutils.drawFilledBox(1,1,w,h,colors.black)
@@ -58,7 +58,7 @@ function app_exit()
     os.shutdown()
 end
 
-local apps = {
+apps = {
     {name="Snake",func=app_exit},
     {name="Exit",func=app_exit}
 }
