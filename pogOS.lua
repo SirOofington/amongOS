@@ -1,3 +1,4 @@
+version = "1.0"
 w, h = term.getSize()
 selected_app = 1
 apps = {}
@@ -6,14 +7,18 @@ function draw_header()
     paintutils.drawFilledBox(1,1,w,h,colors.black)
     for i=1,w do
         paintutils.drawPixel(i,1,colors.gray)
+        paintutils.drawPixel(i,h,colors.gray)
     end
     
     term.setTextColor(colors.yellow)
     term.setCursorPos(1,1)
-    term.write("pogOS")
+    term.write(string.format("pogOS %d",version))
 
     term.setCursorPos(w - string.len("ID: *****") + 1,1)
     term.write(string.format("ID: %5d",os.getComputerID()))
+
+    term.setCursorPos(1,h)
+    term.write(string.format("%d / %d",selected_app,#apps))
 
     term.setBackgroundColor(colors.black)
     term.setCursorPos(0,0)
@@ -54,7 +59,7 @@ end
 function app_exit()
     term.clear()
     draw_header()
-    term.setCursorPos(1,2)
+    term.setCursorPos(1,3)
     term.setTextColor(colors.white)
     term.write("Shutting down...")
     term.setCursorBlink(false)
@@ -62,8 +67,13 @@ function app_exit()
     os.shutdown()
 end
 
+function app_snake()
+    shell.run("worm")
+end
+
 apps = {
-    {name="Snake",func=function() shell.run("worm") end},
+    {name="Twitter",func=nil},
+    {name="Snake",func=app_snake},
     {name="Exit",func=app_exit}
 }
 
@@ -72,5 +82,4 @@ while true do
     draw_header()
     draw_apps()
     cycle_apps()
-    os.sleep(1)
 end
