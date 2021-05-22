@@ -41,9 +41,9 @@ function cycle_apps()
     if key == keys.down then
         selected_app = (selected_app % #apps) + 1
     end
-    if key == keys.enter then
-        apps[selected_app]["func"]()
-    end
+    --if key == keys.enter then
+    --    apps[selected_app]["func"]()
+    --end
 
 end
 
@@ -57,8 +57,9 @@ function app_exit()
     os.sleep(5)
     os.shutdown()
 end
+
 local apps = {
-    {name="Snake",func=function() shell.run("worm") end},
+    {name="Snake",func=app_exit},
     {name="Exit",func=app_exit}
 }
 
@@ -67,4 +68,5 @@ while true do
     draw_header()
     draw_apps()
     cycle_apps()
+    os.sleep(1)
 end
