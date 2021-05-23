@@ -1,6 +1,6 @@
 os.pullEvent = os.pullEventRaw
 
-version = "v1.0"
+version = "v1.cock"
 w, h = term.getSize()
 selected_app = 1
 apps = {}
