@@ -79,7 +79,7 @@ function app_phone_data()
 end
 
 apps = {
-    {name="Phone Data",func=app_phone_data}
+    {name="Phone Data",func=app_phone_data},
     {name="Twitter",func=nil},
     {name="Exit",func=app_exit}
 }
