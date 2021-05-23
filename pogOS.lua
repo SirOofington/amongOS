@@ -1,3 +1,5 @@
+os.pullEvent = os.pullEventRaw
+
 version = "v1.0"
 w, h = term.getSize()
 selected_app = 1
@@ -118,6 +120,7 @@ function app_update()
         file.write(txt)
         file.close()
 
+        term.setBackgroundColor(colors.black)
         term.clear()
         draw_header()
         term.setCursorPos(1,3)
