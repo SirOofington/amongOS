@@ -6,31 +6,74 @@ w, h = term.getSize()
 selected_app = 1
 apps = {}
 
+home_theme = {
+    head_txt = colors.yellow
+    head_bck = colors.gray
+    ui_txt = colors.white
+    ui_bck = colors.black
+    sel_txt = colors.black
+    sel_bck = colors.white
+}
+
+twt_theme = {
+    head_txt = colors.white
+    head_bck = colors.cyan
+    ui_txt = colors.lightGray
+    ui_bck = colors.black
+    sel_txt = colors.cyan
+    sel_bck = colors.white
+}
+
+head_txt = nil
+head_bck = nil
+ui_txt = nil
+ui_bck = nil
+sel_txt = nil
+sel_bck = nil
+
+function set_home_colors()
+    head_txt = home_theme.head_txt
+    head_bck = home_theme.head_bck
+    ui_txt = home_theme.ui_txt
+    ui_bck = home_theme.ui_bck
+    sel_txt = home_theme.sel_txt
+    sel_bck = home_theme.sel_bck
+end
+
+function set_twt_colors()
+    head_txt = twt_theme.head_txt
+    head_bck = twt_theme.head_bck
+    ui_txt = twt_theme.ui_txt
+    ui_bck = twt_theme.ui_bck
+    sel_txt = twt_theme.sel_txt
+    sel_bck = twt_theme.sel_bck
+end
+
 function draw_header()
-    paintutils.drawFilledBox(1,1,w,h,colors.black)
+    paintutils.drawFilledBox(1,1,w,h,ui_bck)
     for i=1,w do
-        paintutils.drawPixel(i,1,colors.gray)
-        paintutils.drawPixel(i,h,colors.gray)
+        paintutils.drawPixel(i,1,head_bck)
+        paintutils.drawPixel(i,h,head_bck)
     end
     
-    term.setTextColor(colors.yellow)
+    term.setTextColor(head_txt)
     term.setCursorPos(1,1)
     term.write(string.format("%s %s",os_name,version))
 
     term.setCursorPos(w - string.len("ID: *****") + 1,1)
     term.write(string.format("ID: %5d",os.getComputerID()))
 
-    term.setBackgroundColor(colors.black)
+    term.setBackgroundColor(ui_bck)
     term.setCursorPos(0,0)
 end
 
 function draw_apps()
     for i=1,#apps do
-        term.setTextColor(colors.white)
-        term.setBackgroundColor(colors.black)
+        term.setTextColor(ui_txt)
+        term.setBackgroundColor(ui_bck)
         if i == selected_app then
-            term.setTextColor(colors.black)
-            term.setBackgroundColor(colors.white)
+            term.setTextColor(sel_txt)
+            term.setBackgroundColor(sel_bck)
         end
         term.setCursorPos(3,i + 2)
         term.write(apps[i]["name"])
@@ -62,10 +105,11 @@ function cycle_apps()
 end
 
 function app_exit()
+    term.setTextColor(ui_txt)
+    term.setBackgroundColor(ui_bck)
     term.clear()
     draw_header()
     term.setCursorPos(1,3)
-    term.setTextColor(colors.white)
     term.setCursorBlink(false)
     term.write("Shutting down")
     for i=1,3 do
@@ -76,25 +120,21 @@ function app_exit()
     os.shutdown()
 end
 
-function app_snake()
-    shell.run("worm")
-end
-
 function app_info_draw_interface()
     term.setCursorPos(1,3)
-    term.setBackgroundColor(colors.black)
-    term.setTextColor(colors.white)
+    term.setBackgroundColor(ui_bck)
+    term.setTextColor(ui_txt)
     term.write(string.format("Phone ID: %05d",os.getComputerID()))
     term.setCursorPos(1,4)
     term.write("Owner: ")
     term.setCursorPos(1,5)
     term.write(string.format("Firmware Version: %s",version))
     term.setCursorPos(1,7)
-    term.setBackgroundColor(colors.white)
-    term.setTextColor(colors.black)
+    term.setBackgroundColor(sel_bck)
+    term.setTextColor(sel_txt)
     term.write("Back")
-    term.setBackgroundColor(colors.black)
-    term.setTextColor(colors.white)
+    term.setBackgroundColor(ui_bck)
+    term.setTextColor(ui_txt)
     term.setCursorPos(0,0)
 end
 
@@ -118,7 +158,7 @@ end
 function app_update()
     local website = http.get("https://raw.githubusercontent.com/SirOofington/pogOS/test/pogOS.lua")
     if website then
-        term.setBackgroundColor(colors.black)
+        term.setBackgroundColor(ui_bck)
         term.clear()
         draw_header()
         
@@ -130,7 +170,7 @@ function app_update()
         file.close()
 
         term.setCursorPos(1,3)
-        term.setTextColor(colors.white)
+        term.setTextColor(ui_txt)
         term.setCursorBlink(false)
         term.write("Updating")
         for i=1,3 do
@@ -145,8 +185,17 @@ function app_update()
     end
 end
 
+function app_twitter()
+    while true do
+        set_twt_colors()
+        draw_header()
+        os.sleep(5)
+        break
+    end
+end
+
 apps = {
-    {name="Twitter",func=nil,ico=colors.lightBlue},
+    {name="Twitter",func=app_twitter,ico=colors.lightBlue},
     {name="",func=nil,ico=colors.black},
     {name="Info",func=app_info,ico=colors.gray},
     {name="Update",func=app_update,ico=colors.green},
@@ -154,6 +203,7 @@ apps = {
 }
 
 while true do
+    set_home_colors()
     term.clear()
     draw_header()
     draw_apps()
