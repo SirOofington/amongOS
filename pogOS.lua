@@ -165,7 +165,7 @@ function app_update()
         local txt = website.readAll()
         website.close()
 
-        local file = fs.open("pogOS.lua","w")
+        local file = fs.open(os_name..".lua","w")
         file.write(txt)
         file.close()
 
@@ -180,7 +180,7 @@ function app_update()
         os.sleep(0.5)
 
         shell.run("delete startup")
-        shell.run("copy pogOS.lua startup")
+        shell.run("copy "..os_name..".lua startup")
         os.reboot()
     end
 end
