@@ -19,7 +19,7 @@ twt_theme = {
     head_txt = colors.white,
     head_bck = colors.cyan,
     ui_txt = colors.black,
-    ui_bck = colors.lightGray,
+    ui_bck = colors.white,
     sel_txt = colors.cyan,
     sel_bck = colors.white
 }
