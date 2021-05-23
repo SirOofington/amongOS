@@ -81,7 +81,7 @@ end
 
 function app_update()
     local file_list = {"amongOS.lua","aOSutils.lua"}
-    for i=1,#file_list
+    for i=1,#file_list do
         local filename = file_list[i]
         local website = http.get("https://raw.githubusercontent.com/SirOofington/amongOS/test/"..filename)
         if website then
