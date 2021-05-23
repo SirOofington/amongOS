@@ -24,21 +24,21 @@ sel_txt = nil
 sel_bck = nil
 
 function set_home_theme()
-    head_txt = home_theme.head_txt
-    head_bck = home_theme.head_bck
-    ui_txt = home_theme.ui_txt
-    ui_bck = home_theme.ui_bck
-    sel_txt = home_theme.sel_txt
-    sel_bck = home_theme.sel_bck
+    head_txt = home_theme["head_txt"]
+    head_bck = home_theme["head_bck"]
+    ui_txt = home_theme["ui_txt"]
+    ui_bck = home_theme["ui_bck"]
+    sel_txt = home_theme["sel_txt"]
+    sel_bck = home_theme["sel_bck"]
 end
 
 function set_twt_theme()
-    head_txt = twt_theme.head_txt
-    head_bck = twt_theme.head_bck
-    ui_txt = twt_theme.ui_txt
-    ui_bck = twt_theme.ui_bck
-    sel_txt = twt_theme.sel_txt
-    sel_bck = twt_theme.sel_bck
+    head_txt = twt_theme["head_txt"]
+    head_bck = twt_theme["head_bck"]
+    ui_txt = twt_theme["ui_txt"]
+    ui_bck = twt_theme["ui_bck"]
+    sel_txt = twt_theme["sel_txt"]
+    sel_bck = twt_theme["sel_bck"]
 end
 
 function set_head_colors()
