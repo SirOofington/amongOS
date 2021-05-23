@@ -29,8 +29,9 @@ function draw_apps()
             term.setTextColor(colors.black)
             term.setBackgroundColor(colors.white)
         end
-        term.setCursorPos(1,i + 2)
+        term.setCursorPos(2,i + 2)
         term.write(apps[i]["name"])
+        paintutils.drawPixel(1,i+2,apps[i]["ico"])
     end
     term.setCursorPos(0,0)
 end
@@ -92,16 +93,16 @@ end
 
 function app_info_exit()
     _,key = os.pullEvent("key")
-    os.sleep(0.5)
-    return key == keys.backspace
+    os.sleep(0.05)
+    return key == keys.enter or key == keys.space
 end
 
 function app_info()
     while true do
         term.clear()
         draw_header()
-        app_phone_data_draw_interface()
-        if app_phone_data_exit() then
+        app_info_draw_interface()
+        if app_info_exit() then
             break
         end
     end
@@ -124,10 +125,10 @@ function app_update()
 end
 
 apps = {
-    {name="Info",func=app_info},
-    {name="Twitter",func=nil},
-    {name="Update",func=app_update},
-    {name="Shut Down",func=app_exit}
+    {name="Twitter",func=nil,ico=colors.lightBlue},
+    {name="Info",func=app_info,ico=colors.gray},
+    {name="Update",func=app_update,ico=colors.green},
+    {name="Shut Down",func=app_exit,ico=colors.red}
 }
 
 while true do
