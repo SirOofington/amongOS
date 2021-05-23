@@ -111,7 +111,7 @@ end
 
 function app_twitter()
     while true do
-        aOSutils.set_twt_colors()
+        aOSutils.set_twt_theme()
         aOSutils.draw_header()
         os.sleep(5)
         break
@@ -128,7 +128,7 @@ apps = {
 
 while true do
     term.clear()
-    aOSutils.set_home_colors()
+    aOSutils.set_home_theme()
     aOSutils.draw_header()
     draw_apps()
     cycle_apps()
