@@ -118,6 +118,18 @@ function app_update()
         file.write(txt)
         file.close()
 
+        term.clear()
+        draw_header()
+        term.setCursorPos(1,3)
+        term.setTextColor(colors.white)
+        term.setCursorBlink(false)
+        term.write("Updating")
+        for i=1,3 do
+            os.sleep(0.5)
+            term.write(".")
+        end
+        os.sleep(0.5)
+
         shell.run("delete startup")
         shell.run("copy pogOS.lua startup")
         os.reboot()
