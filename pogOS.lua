@@ -40,6 +40,7 @@ end
 
 function cycle_apps()
     local _,key = os.pullEvent("key")
+    sleep(0.1)
     if key == keys.down then
         selected_app = selected_app - 1
         selected_app = (selected_app + 1) % #apps
@@ -53,7 +54,6 @@ function cycle_apps()
     if key == keys.enter or key == keys.space then
         apps[selected_app]["func"]()
     end
-
 end
 
 function app_exit()
@@ -61,9 +61,13 @@ function app_exit()
     draw_header()
     term.setCursorPos(1,3)
     term.setTextColor(colors.white)
-    term.write("Shutting down...")
     term.setCursorBlink(false)
-    os.sleep(5)
+    term.write("Shutting down")
+    for i=1,3 do
+        term.write(".")
+        os.sleep(1)
+    end
+    os.sleep(1)
     os.shutdown()
 end
 
@@ -71,9 +75,12 @@ function app_snake()
     shell.run("worm")
 end
 
+function app_phone_data()
+end
+
 apps = {
+    {name="Phone Data",func=app_phone_data}
     {name="Twitter",func=nil},
-    {name="Snake",func=app_snake},
     {name="Exit",func=app_exit}
 }
 
