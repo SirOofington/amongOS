@@ -96,7 +96,7 @@ end
 function app_phone_data_exit()
     _,key = os.pullEvent("key")
     os.sleep(0.5)
-    return key == keys.enter or key == keys.space
+    return key == keys.backspace
 end
 
 function app_phone_data()
