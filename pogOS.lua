@@ -1,5 +1,6 @@
 os.pullEvent = os.pullEventRaw
 
+os_name = "amongOS"
 version = "v1.0"
 w, h = term.getSize()
 selected_app = 1
@@ -14,7 +15,7 @@ function draw_header()
     
     term.setTextColor(colors.yellow)
     term.setCursorPos(1,1)
-    term.write(string.format("pogOS %s",version))
+    term.write(string.format("%s %s",os_name,version))
 
     term.setCursorPos(w - string.len("ID: *****") + 1,1)
     term.write(string.format("ID: %5d",os.getComputerID()))
