@@ -17,9 +17,6 @@ function draw_header()
     term.setCursorPos(w - string.len("ID: *****") + 1,1)
     term.write(string.format("ID: %5d",os.getComputerID()))
 
-    term.setCursorPos(1,h)
-    term.write(string.format("%d / %d",selected_app,#apps))
-
     term.setBackgroundColor(colors.black)
     term.setCursorPos(0,0)
 end
@@ -64,10 +61,10 @@ function app_exit()
     term.setCursorBlink(false)
     term.write("Shutting down")
     for i=1,3 do
-        os.sleep(1)
+        os.sleep(0.5)
         term.write(".")
     end
-    os.sleep(1)
+    os.sleep(0.5)
     os.shutdown()
 end
 
@@ -75,7 +72,7 @@ function app_snake()
     shell.run("worm")
 end
 
-function app_phone_data_draw_interface()
+function app_info_draw_interface()
     term.setCursorPos(1,3)
     term.setBackgroundColor(colors.black)
     term.setTextColor(colors.white)
@@ -84,7 +81,7 @@ function app_phone_data_draw_interface()
     term.write("Owner: ")
     term.setCursorPos(1,5)
     term.write(string.format("Firmware Version: %s",version))
-    term.setCursorPos(w-3,h-1)
+    term.setCursorPos(1,7)
     term.setBackgroundColor(colors.white)
     term.setTextColor(colors.black)
     term.write("Back")
@@ -93,13 +90,13 @@ function app_phone_data_draw_interface()
     term.setCursorPos(0,0)
 end
 
-function app_phone_data_exit()
+function app_info_exit()
     _,key = os.pullEvent("key")
     os.sleep(0.5)
     return key == keys.backspace
 end
 
-function app_phone_data()
+function app_info()
     while true do
         term.clear()
         draw_header()
@@ -110,10 +107,27 @@ function app_phone_data()
     end
 end
 
+function app_update()
+    local website = http.get("https://raw.githubusercontent.com/SirOofington/pogOS/test/pogOS.lua")
+    if website then
+        local txt = website.readAll()
+        website.close()
+
+        local file = fs.open("pogOS.lua","w")
+        file.write(txt)
+        file.close()
+
+        shell.run("delete startup")
+        shell.run("copy pogOS.lua startup")
+        os.reboot()
+    end
+end
+
 apps = {
-    {name="Phone Data",func=app_phone_data},
+    {name="Info",func=app_info},
     {name="Twitter",func=nil},
-    {name="Exit",func=app_exit}
+    {name="Update",func=app_update},
+    {name="Shut Down",func=app_exit}
 }
 
 while true do
