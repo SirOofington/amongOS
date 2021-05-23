@@ -29,7 +29,7 @@ function draw_apps()
             term.setTextColor(colors.black)
             term.setBackgroundColor(colors.white)
         end
-        term.setCursorPos(2,i + 2)
+        term.setCursorPos(3,i + 2)
         term.write(apps[i]["name"])
         paintutils.drawPixel(1,i+2,apps[i]["ico"])
     end
