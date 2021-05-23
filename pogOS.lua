@@ -113,6 +113,10 @@ end
 function app_update()
     local website = http.get("https://raw.githubusercontent.com/SirOofington/pogOS/test/pogOS.lua")
     if website then
+        term.setBackgroundColor(colors.black)
+        term.clear()
+        draw_header()
+        
         local txt = website.readAll()
         website.close()
 
@@ -120,9 +124,6 @@ function app_update()
         file.write(txt)
         file.close()
 
-        term.setBackgroundColor(colors.black)
-        term.clear()
-        draw_header()
         term.setCursorPos(1,3)
         term.setTextColor(colors.white)
         term.setCursorBlink(false)
