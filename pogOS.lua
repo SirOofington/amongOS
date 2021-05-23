@@ -40,7 +40,7 @@ end
 
 function cycle_apps()
     local _,key = os.pullEvent("key")
-    sleep(0.1)
+    sleep(0.05)
     if key == keys.down then
         selected_app = selected_app - 1
         selected_app = (selected_app + 1) % #apps
@@ -64,8 +64,8 @@ function app_exit()
     term.setCursorBlink(false)
     term.write("Shutting down")
     for i=1,3 do
-        term.write(".")
         os.sleep(1)
+        term.write(".")
     end
     os.sleep(1)
     os.shutdown()
@@ -75,7 +75,39 @@ function app_snake()
     shell.run("worm")
 end
 
+function app_phone_data_draw_interface()
+    term.setCursorPos(1,3)
+    term.setBackgroundColor(colors.black)
+    term.setTextColor(colors.white)
+    term.write(string.format("Phone ID: %05d",os.getComputerID()))
+    term.setCursorPos(1,4)
+    term.write("Owner: ")
+    term.setCursorPos(1,5)
+    term.write(string.format("Firmware Version: %s",version))
+    term.setCursorPos(w-3,h-1)
+    term.setBackgroundColor(colors.white)
+    term.setTextColor(colors.black)
+    term.write("Back")
+    term.setBackgroundColor(colors.black)
+    term.setTextColor(colors.white)
+    term.setCursorPos(0,0)
+end
+
+function app_phone_data_exit()
+    _,key = os.pullEvent("key")
+    os.sleep(0.5)
+    return key == keys.enter or key == keys.space
+end
+
 function app_phone_data()
+    while true do
+        term.clear()
+        draw_header()
+        app_phone_data_draw_interface()
+        if app_phone_data_exit then
+            break
+        end
+    end
 end
 
 apps = {
