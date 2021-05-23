@@ -42,14 +42,18 @@ function cycle_apps()
     local _,key = os.pullEvent("key")
     sleep(0.05)
     if key == keys.down then
-        selected_app = selected_app - 1
-        selected_app = (selected_app + 1) % #apps
-        selected_app = selected_app + 1
+        repeat
+            selected_app = selected_app - 1
+            selected_app = (selected_app + 1) % #apps
+            selected_app = selected_app + 1
+        until apps[selected_app]["name"] ~= ""
     end
     if key == keys.up then
-        selected_app = selected_app - 1
-        selected_app = (selected_app - 1) % #apps
-        selected_app = selected_app + 1
+        repeat
+            selected_app = selected_app - 1
+            selected_app = (selected_app - 1) % #apps
+            selected_app = selected_app + 1
+        until apps[selected_app]["name"] ~= ""
     end
     if key == keys.enter or key == keys.space then
         apps[selected_app]["func"]()
@@ -142,6 +146,7 @@ end
 
 apps = {
     {name="Twitter",func=nil,ico=colors.lightBlue},
+    {name="",func=nil,ico=colors.black},
     {name="Info",func=app_info,ico=colors.gray},
     {name="Update",func=app_update,ico=colors.green},
     {name="Shut Down",func=app_exit,ico=colors.red}
