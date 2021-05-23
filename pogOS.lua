@@ -104,7 +104,7 @@ function app_phone_data()
         term.clear()
         draw_header()
         app_phone_data_draw_interface()
-        if app_phone_data_exit then
+        if app_phone_data_exit() then
             break
         end
     end
