@@ -145,3 +145,11 @@ function event_mouse_released(x,y,right_click)
     end
     return false
 end
+
+function event_mouse_scroll_up()
+
+end
+
+function event_mouse_scroll_down()
+
+end

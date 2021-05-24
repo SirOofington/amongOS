@@ -18,14 +18,14 @@ end
 
 function cycle_apps()
     aOSutils.pull_event()
-    if aOSutils.event_key_held(keys.up) then
+    if aOSutils.event_key_held(keys.down) then
         repeat
             selected_app = selected_app - 1
             selected_app = (selected_app + 1) % #apps
             selected_app = selected_app + 1
         until apps[selected_app]["name"] ~= ""
     end
-    if aOSutils.event_key_held(keys.down) then
+    if aOSutils.event_key_held(keys.up) then
         repeat
             selected_app = selected_app - 1
             selected_app = (selected_app - 1) % #apps
