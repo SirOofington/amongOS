@@ -44,12 +44,12 @@ function draw_text(x,y,str)
 end
 
 function set_theme(theme)
-    head_txt = theme.head_txt
-    head_bck = theme.head_bck
-    ui_txt = theme.ui_txt
-    ui_bck = theme.ui_bck
-    sel_txt = theme.sel_txt
-    sel_bck = theme.sel_bck
+    head_txt = theme["head_txt"]
+    head_bck = theme["head_bck"]
+    ui_txt = theme["ui_txt"]
+    ui_bck = theme["ui_bck"]
+    sel_txt = theme["sel_txt"]
+    sel_bck = theme["sel_bck"]
 end
 
 function set_head_colors()
