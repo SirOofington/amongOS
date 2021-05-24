@@ -127,7 +127,7 @@ apps = {
     {name="Update",func=app_update,ico=colors.green},
     {name="Shut Down",func=app_exit,ico=colors.red}
 }
-io.read()
+
 while true do
     term.clear()
     aOSutils.set_home_theme()
