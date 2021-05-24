@@ -1,3 +1,7 @@
+os_name = "amongOS"
+version = "v1.0"
+w, h = term.getSize()
+
 home_theme = {
     head_txt = colors.yellow,
     head_bck = colors.gray,
@@ -23,6 +27,12 @@ ui_bck = nil
 sel_txt = nil
 sel_bck = nil
 
+function draw_text(x,y,str)
+    term.setCursorPos(x,y)
+    term.write(str)
+    term.setCursorPos(0,0)
+end
+
 function set_home_theme()
     head_txt = home_theme["head_txt"]
     head_bck = home_theme["head_bck"]
@@ -30,6 +40,7 @@ function set_home_theme()
     ui_bck = home_theme["ui_bck"]
     sel_txt = home_theme["sel_txt"]
     sel_bck = home_theme["sel_bck"]
+    draw_text(1,h,"poggers")
 end
 
 function set_twt_theme()
@@ -54,12 +65,6 @@ end
 function set_sel_colors()
     term.setBackgroundColor(sel_bck)
     term.setTextColor(sel_txt)
-end
-
-function draw_text(x,y,str)
-    term.setCursorPos(x,y)
-    term.write(str)
-    term.setCursorPos(0,0)
 end
 
 function draw_header()

@@ -1,10 +1,7 @@
- os.loadAPI("aOSutils")
+os.loadAPI("aOSutils")
 
 os.pullEvent = os.pullEventRaw
 
-os_name = "amongOS"
-version = "v1.0"
-w, h = term.getSize()
 selected_app = 1
 apps = {}
 
