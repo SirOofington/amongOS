@@ -87,7 +87,7 @@ function app_update()
         if temp == nil then
             break
         end
-        table.insert(file_insert,temp)
+        table.insert(file_list,temp)
     end
 
     file.close()
