@@ -6,13 +6,11 @@ function draw_main_menu()
 end
 
 function run()
-    while true do
-        aOSutils.set_theme(aOSutils.twt_theme)
-        aOSutils.draw_header()
-        draw_main_menu()
-        os.sleep(5)
-        break
-    end
+    aOSutils.set_theme(aOSutils.twt_theme)
+    aOSutils.draw_header()
+    draw_main_menu()
+    os.sleep(5)
+    break
 end
 
 while true do
