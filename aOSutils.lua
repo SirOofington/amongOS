@@ -34,13 +34,13 @@ function draw_text(x,y,str)
 end
 
 function set_home_theme()
+    draw_text(1,h,"poggers")
     head_txt = home_theme["head_txt"]
     head_bck = home_theme["head_bck"]
     ui_txt = home_theme["ui_txt"]
     ui_bck = home_theme["ui_bck"]
     sel_txt = home_theme["sel_txt"]
     sel_bck = home_theme["sel_bck"]
-    draw_text(1,h,"poggers")
 end
 
 function set_twt_theme()
