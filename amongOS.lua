@@ -1,4 +1,9 @@
-os.loadAPI("aOSutils.lua")
+success = os.loadAPI("aOSutils.lua")
+
+if not success then
+    print("Problem loading aOSutils.lua, exiting...")
+    
+end
 
 os.pullEvent = os.pullEventRaw
 
