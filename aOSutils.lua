@@ -27,6 +27,13 @@ ui_bck = nil
 sel_txt = nil
 sel_bck = nil
 
+head_txt = home_theme.head_txt
+head_bck = home_theme.head_bck
+ui_txt = home_theme.ui_txt
+ui_bck = home_theme.ui_bck
+sel_txt = home_theme.sel_txt
+sel_bck = home_theme.sel_bck
+
 function draw_text(x,y,str)
     term.setCursorPos(x,y)
     term.write(str)
@@ -34,13 +41,12 @@ function draw_text(x,y,str)
 end
 
 function set_home_theme()
-    draw_text(1,h,"poggers")
-    head_txt = home_theme["head_txt"]
-    head_bck = home_theme["head_bck"]
-    ui_txt = home_theme["ui_txt"]
-    ui_bck = home_theme["ui_bck"]
-    sel_txt = home_theme["sel_txt"]
-    sel_bck = home_theme["sel_bck"]
+    head_txt = home_theme.head_txt
+    head_bck = home_theme.head_bck
+    ui_txt = home_theme.ui_txt
+    ui_bck = home_theme.ui_bck
+    sel_txt = home_theme.sel_txt
+    sel_bck = home_theme.sel_bck
 end
 
 function set_twt_theme()

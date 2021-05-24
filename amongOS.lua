@@ -125,7 +125,7 @@ apps = {
 
 while true do
     term.clear()
-    aOSutils.set_home_theme()
+    --aOSutils.set_home_theme()
     aOSutils.draw_header()
     draw_apps()
     cycle_apps()
