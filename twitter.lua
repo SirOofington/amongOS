@@ -1,7 +1,5 @@
 os.loadAPI("aOSutils.lua")
 
-function
-
 function run()
     while true do
         aOSutils.set_twt_theme()
