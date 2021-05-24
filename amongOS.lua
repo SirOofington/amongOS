@@ -70,6 +70,9 @@ end
 
 function app_info_exit()
     aOSutils.pull_event()
+    if aOSutils.event_key_press(keys.home) then
+        aOSutils.toggle_dev_mode()
+    end
     return aOSutils.event_key_press(keys.enter) or aOSutils.event_key_press(keys.space)
 end
 

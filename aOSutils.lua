@@ -75,12 +75,12 @@ function draw_header()
     end
     
     set_head_colors()
-    term.setCursorPos(1,1)
-    term.write(string.format("%s %s",os_name,version))
-
-    term.setCursorPos(w - string.len("ID: *****") + 1,1)
-    term.write(string.format("ID: %5d",os.getComputerID()))
-
+    draw_text(1,1,string.format("%s %s",os_name,version))
+    draw_text(w - string.len("ID: *****") + 1,1,string.format("ID: %5d",os.getComputerID()))
+    if dev_mode then
+        draw_text(1,h,"Dev Mode Enabled")
+    end
+    
     term.setCursorPos(0,0)
 end
 
