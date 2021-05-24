@@ -1,7 +1,7 @@
 os_name = "amongOS"
 version = "v1.0"
 w, h = term.getSize()
-event = nil
+event = {}
 
 home_theme = {
     head_txt = colors.yellow,
@@ -81,7 +81,6 @@ function pull_event()
 end
 
 function event_key_press(key_value)
-    event = pull_event()
     if event[1] == "key" and event[2] == key_value and event[3] == false then
         return true
     end
@@ -89,7 +88,6 @@ function event_key_press(key_value)
 end
 
 function event_key_held(key_value)
-    event = pull_event()
     if event[1] == "key" and event[2] == key_value then
         return true
     end
@@ -97,7 +95,6 @@ function event_key_held(key_value)
 end
 
 function event_key_released(key_value)
-    event = pull_event()
     if event[1] == "key_up" and event[2] == key_value then
         return true
     end
@@ -113,7 +110,6 @@ function event_mouse_click(x,y,right_click)
         right_click = 0
     end
 
-    event = pull_event()
     if event[1] == "mouse_click" and event[2] == right_click and event[3] == x and event[4] == y then
         return true
     end
@@ -129,7 +125,6 @@ function event_mouse_drag(x,y,right_click)
         right_click = 0
     end
 
-    event = pull_event()
     if event[1] == "mouse_drag" and event[2] == right_click and event[3] == x and event[4] == y then
         return true
     end
@@ -145,7 +140,6 @@ function event_mouse_released(x,y,right_click)
         right_click = 0
     end
 
-    event = pull_event()
     if event[1] == "mouse_up" and event[2] == right_click and event[3] == x and event[4] == y then
         return true
     end
