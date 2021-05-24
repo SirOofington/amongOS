@@ -1,5 +1,5 @@
-os.loadAPI("aOSutils")
-os.loadAPI("twitter")
+os.loadAPI("aOSutils.lua")
+os.loadAPI("twitter.lua")
 
 os.pullEvent = os.pullEventRaw
 
@@ -78,7 +78,20 @@ function app_info()
 end
 
 function app_update()
-    local file_list = {"amongOS.lua","aOSutils.lua"}
+    
+    local file = fs.open("filelist.txt","r")
+    local file_list = {}
+
+    while true do
+        local temp = file.readLine()
+        if temp == nil then
+            break
+        end
+        table.insert(file_insert,temp)
+    end
+
+    file.close()
+
     for i=1,#file_list do
         local filename = file_list[i]
         local website = http.get("https://raw.githubusercontent.com/SirOofington/amongOS/test/"..filename)
@@ -114,7 +127,7 @@ apps = {
     {name="Update",func=app_update,ico=colors.green},
     {name="Shut Down",func=app_exit,ico=colors.red}
 }
-
+io.read()
 while true do
     term.clear()
     aOSutils.set_home_theme()

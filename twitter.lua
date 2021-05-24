@@ -1,4 +1,6 @@
-os.loadAPI("aOSutils")
+os.loadAPI("aOSutils.lua")
+
+function
 
 function run()
     while true do
