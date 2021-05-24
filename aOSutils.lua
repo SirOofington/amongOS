@@ -82,3 +82,81 @@ function draw_header()
 
     term.setCursorPos(0,0)
 end
+
+local function pull_event()
+    local pe = {os.pullEvent()}
+    os.sleep(0.05)
+    return pe
+end
+
+function event_key_press(key_value)
+    local event = pull_event()
+    if event[1] == "key" and event[2] == key_value and event[3] == false then
+        return true
+    end
+    return false
+end
+
+function event_key_held(key_value)
+    local event = pull_event()
+    if event[1] == "key" and event[2] == key_value then
+        return true
+    end
+    return false
+end
+
+function event_key_released(key_value)
+    local event = pull_event()
+    if event[1] == "key_up" and event[2] == key_value then
+        return true
+    end
+    return false
+end
+
+function event_mouse_click(x,y,right_click)
+
+    right_click = right_click or false
+    if right_click then
+        right_click = 1
+    else
+        right_click = 0
+    end
+
+    local event = pull_event()
+    if event[1] == "mouse_click" and event[2] == right_click and event[3] == x and event[4] == y then
+        return true
+    end
+    return false
+end
+
+function event_mouse_drag(x,y,right_click)
+
+    right_click = right_click or false
+    if right_click then
+        right_click = 1
+    else
+        right_click = 0
+    end
+
+    local event = pull_event()
+    if event[1] == "mouse_drag" and event[2] == right_click and event[3] == x and event[4] == y then
+        return true
+    end
+    return false
+end
+
+function event_mouse_released(x,y,right_click)
+
+    right_click = right_click or false
+    if right_click then
+        right_click = 1
+    else
+        right_click = 0
+    end
+
+    local event = pull_event()
+    if event[1] == "mouse_up" and event[2] == right_click and event[3] == x and event[4] == y then
+        return true
+    end
+    return false
+end

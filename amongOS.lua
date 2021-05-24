@@ -17,23 +17,21 @@ function draw_apps()
 end
 
 function cycle_apps()
-    local _,key = os.pullEvent("key")
-    sleep(0.05)
-    if key == keys.down then
+    if aOSutils.event_key_held(keys.up) then
         repeat
             selected_app = selected_app - 1
             selected_app = (selected_app + 1) % #apps
             selected_app = selected_app + 1
         until apps[selected_app]["name"] ~= ""
     end
-    if key == keys.up then
+    if aOSutils.event_key_held(keys.down) then
         repeat
             selected_app = selected_app - 1
             selected_app = (selected_app - 1) % #apps
             selected_app = selected_app + 1
         until apps[selected_app]["name"] ~= ""
     end
-    if key == keys.enter or key == keys.space then
+    if aOSutils.event_key_press(keys.enter) or key == aOSutils.event_key_press(keys.space) then
         apps[selected_app]["func"]()
     end
 end
