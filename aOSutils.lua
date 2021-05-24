@@ -1,6 +1,7 @@
 os_name = "amongOS"
 version = "v1.0"
 w, h = term.getSize()
+event = nil
 
 home_theme = {
     head_txt = colors.yellow,
@@ -33,22 +34,13 @@ function draw_text(x,y,str)
     term.setCursorPos(0,0)
 end
 
-function set_home_theme()
-    head_txt = home_theme.head_txt
-    head_bck = home_theme.head_bck
-    ui_txt = home_theme.ui_txt
-    ui_bck = home_theme.ui_bck
-    sel_txt = home_theme.sel_txt
-    sel_bck = home_theme.sel_bck
-end
-
-function set_twt_theme()
-    head_txt = twt_theme["head_txt"]
-    head_bck = twt_theme["head_bck"]
-    ui_txt = twt_theme["ui_txt"]
-    ui_bck = twt_theme["ui_bck"]
-    sel_txt = twt_theme["sel_txt"]
-    sel_bck = twt_theme["sel_bck"]
+function set_theme(theme)
+    head_txt = theme.head_txt
+    head_bck = theme.head_bck
+    ui_txt = theme.ui_txt
+    ui_bck = theme.ui_bck
+    sel_txt = theme.sel_txt
+    sel_bck = theme.sel_bck
 end
 
 function set_head_colors()
@@ -83,14 +75,13 @@ function draw_header()
     term.setCursorPos(0,0)
 end
 
-local function pull_event()
-    local pe = {os.pullEvent()}
+function pull_event()
+    global_event = {os.pullEvent()}
     os.sleep(0.05)
-    return pe
 end
 
 function event_key_press(key_value)
-    local event = pull_event()
+    event = pull_event()
     if event[1] == "key" and event[2] == key_value and event[3] == false then
         return true
     end
@@ -98,7 +89,7 @@ function event_key_press(key_value)
 end
 
 function event_key_held(key_value)
-    local event = pull_event()
+    event = pull_event()
     if event[1] == "key" and event[2] == key_value then
         return true
     end
@@ -106,7 +97,7 @@ function event_key_held(key_value)
 end
 
 function event_key_released(key_value)
-    local event = pull_event()
+    event = pull_event()
     if event[1] == "key_up" and event[2] == key_value then
         return true
     end
@@ -122,7 +113,7 @@ function event_mouse_click(x,y,right_click)
         right_click = 0
     end
 
-    local event = pull_event()
+    event = pull_event()
     if event[1] == "mouse_click" and event[2] == right_click and event[3] == x and event[4] == y then
         return true
     end
@@ -138,7 +129,7 @@ function event_mouse_drag(x,y,right_click)
         right_click = 0
     end
 
-    local event = pull_event()
+    event = pull_event()
     if event[1] == "mouse_drag" and event[2] == right_click and event[3] == x and event[4] == y then
         return true
     end
@@ -154,7 +145,7 @@ function event_mouse_released(x,y,right_click)
         right_click = 0
     end
 
-    local event = pull_event()
+    event = pull_event()
     if event[1] == "mouse_up" and event[2] == right_click and event[3] == x and event[4] == y then
         return true
     end

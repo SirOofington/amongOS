@@ -17,6 +17,7 @@ function draw_apps()
 end
 
 function cycle_apps()
+    aOSutils.pull_event()
     if aOSutils.event_key_held(keys.up) then
         repeat
             selected_app = selected_app - 1
@@ -59,9 +60,8 @@ function app_info_draw_interface()
 end
 
 function app_info_exit()
-    _,key = os.pullEvent("key")
-    os.sleep(0.05)
-    return key == keys.enter or key == keys.space
+    aOSutils.pull_event()
+    return aOSutils.event_key_press(keys.enter) or aOSutils.event_key_press(keys.space)
 end
 
 function app_info()
@@ -127,7 +127,7 @@ apps = {
 
 while true do
     term.clear()
-    aOSutils.set_home_theme()
+    aOSutils.set_theme(aOSutils.home_theme)
     aOSutils.draw_header()
     draw_apps()
     cycle_apps()
