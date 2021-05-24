@@ -115,7 +115,7 @@ function app_update()
     os.sleep(0.5)
 
     shell.run("delete startup")
-    shell.run("copy "..os_name..".lua startup")
+    shell.run("copy "..aOSutils.os_name..".lua startup")
     os.reboot()
 end
 
