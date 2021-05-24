@@ -39,9 +39,9 @@ function cycle_apps()
 end
 
 function app_exit()
-    aOSutils.set_ui_colors()
     term.clear()
     aOSutils.draw_header()
+    aOSutils.set_ui_colors()
     aOSutils.draw_text(1,3,"Shutting down")
     for i=1,3 do
         os.sleep(0.5)
