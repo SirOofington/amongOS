@@ -38,7 +38,11 @@ function cycle_apps()
         until apps[selected_app]["name"] ~= ""
     end
     if aOSutils.event_key_press(keys.enter) or key == aOSutils.event_key_press(keys.space) then
-        apps[selected_app]["func"]()
+        if apps[selected_app]["func"] ~= nil then
+            apps[selected_app]["func"]()
+        elseif apps[selected_app]["shell"] ~= nil then
+            shell.run(apps[selected_app]["shell"])
+        end
     end
 end
 
@@ -123,8 +127,8 @@ function app_update()
 end
 
 apps = {
-    {name="Twitter",func=shell.run("twitter.lua"),ico=colors.lightBlue},
-    {name="",func=nil,ico=colors.black},
+    {name="Twitter",func=nil,shell="twitter.lua",ico=colors.lightBlue},
+    {name="",func=nil,shell=nil,ico=colors.black},
     {name="Info",func=app_info,ico=colors.gray},
     {name="Update",func=app_update,ico=colors.green},
     {name="Shut Down",func=app_exit,ico=colors.red}
