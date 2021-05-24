@@ -54,7 +54,7 @@ function app_info_draw_interface()
     aOSutils.set_ui_colors()
     aOSutils.draw_text(1,3,string.format("Phone ID: %05d",os.getComputerID()))
     aOSutils.draw_text(1,4,"Owner: ")
-    aOSutils.draw_text(1,5,string.format("Firmware Version: %s",version))
+    aOSutils.draw_text(1,5,string.format("Firmware Version: %s",aOSutils.version))
     aOSutils.set_sel_colors()
     aOSutils.draw_text(1,7,"Back")
 end

@@ -20,13 +20,6 @@ twt_theme = {
     sel_bck = colors.white
 }
 
-head_txt = nil
-head_bck = nil
-ui_txt = nil
-ui_bck = nil
-sel_txt = nil
-sel_bck = nil
-
 head_txt = home_theme.head_txt
 head_bck = home_theme.head_bck
 ui_txt = home_theme.ui_txt
