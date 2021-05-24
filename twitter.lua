@@ -1,8 +1,8 @@
 os.loadAPI("aOSutils.lua")
 
 function draw_main_menu()
-    aOSutils.set_ui_colors()
-    aOSutils.draw_text(2,2,"TEST")
+    aOSutils.set_sel_colors()
+    aOSutils.draw_text(2,3,"Twitter")
 end
 
 function run()
@@ -13,4 +13,8 @@ function run()
         os.sleep(5)
         break
     end
+end
+
+while true do
+    run()
 end

@@ -1,5 +1,6 @@
 os_name = "amongOS"
 version = "v1.0"
+dev_mode = false
 w, h = term.getSize()
 event = {}
 
@@ -27,6 +28,14 @@ ui_txt = home_theme.ui_txt
 ui_bck = home_theme.ui_bck
 sel_txt = home_theme.sel_txt
 sel_bck = home_theme.sel_bck
+
+function toggle_dev_mode()
+    dev_mode = not dev_mode
+end
+
+function get_dev_mode()
+    return dev_mode
+end
 
 function draw_text(x,y,str)
     term.setCursorPos(x,y)

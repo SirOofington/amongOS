@@ -1,5 +1,4 @@
 os.loadAPI("aOSutils.lua")
-os.loadAPI("twitter.lua")
 
 os.pullEvent = os.pullEventRaw
 
@@ -13,6 +12,7 @@ function draw_apps()
         aOSutils.draw_text(3,i + 2,apps[i]["name"])
         paintutils.drawPixel(1,i+2,apps[i]["ico"])
     end
+    aOSutils.set_ui_colors()
     term.setCursorPos(0,0)
 end
 
@@ -118,7 +118,7 @@ function app_update()
 end
 
 apps = {
-    {name="Twitter",func=twitter.run,ico=colors.lightBlue},
+    {name="Twitter",func=shell.run("twitter.lua"),ico=colors.lightBlue},
     {name="",func=nil,ico=colors.black},
     {name="Info",func=app_info,ico=colors.gray},
     {name="Update",func=app_update,ico=colors.green},
