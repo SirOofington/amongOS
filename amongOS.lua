@@ -97,9 +97,6 @@ function app_update()
         local website = http.get("https://raw.githubusercontent.com/SirOofington/amongOS/test/"..filename)
         if website then
             term.clear()
-            aOSutils.draw_header()
-            aOSutils.set_ui_colors()
-            
             local txt = website.readAll()
             website.close()
 
@@ -108,6 +105,8 @@ function app_update()
             file.close()
         end
     end
+    aOSutils.draw_header()
+    aOSutils.set_ui_colors()
     aOSutils.draw_text(1,3,"Updating")
     for i=1,3 do
         os.sleep(0.5)
