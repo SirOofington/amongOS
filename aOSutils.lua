@@ -147,9 +147,15 @@ function event_mouse_released(x,y,right_click)
 end
 
 function event_mouse_scroll_up()
-
+    if event[1] = "mouse_scroll" and event[2] = -1 then
+        return true
+    end
+    return false
 end
 
 function event_mouse_scroll_down()
-
+    if event[1] == "mouse_scroll" and event[2] == 1 then
+        return true
+    end
+    return false
 end
