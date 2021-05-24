@@ -1,4 +1,5 @@
 os.loadAPI("aOSutils")
+os.loadAPI("twitter")
 
 os.pullEvent = os.pullEventRaw
 
@@ -106,17 +107,8 @@ function app_update()
     os.reboot()
 end
 
-function app_twitter()
-    while true do
-        aOSutils.set_twt_theme()
-        aOSutils.draw_header()
-        os.sleep(5)
-        break
-    end
-end
-
 apps = {
-    {name="Twitter",func=app_twitter,ico=colors.lightBlue},
+    {name="Twitter",func=twitter.run,ico=colors.lightBlue},
     {name="",func=nil,ico=colors.black},
     {name="Info",func=app_info,ico=colors.gray},
     {name="Update",func=app_update,ico=colors.green},
