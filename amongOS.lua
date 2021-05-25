@@ -158,13 +158,6 @@ function app_update()
     os.reboot()
 end
 
-apps = {
-    {name="",ico=colors.black},
-    {name="Info",func=app_info,ico=colors.gray},
-    {name="Update",func=app_update,ico=colors.green},
-    {name="Shut Down",func=app_exit,ico=colors.red}
-}
-
 load_external_apps()
 load_internal_apps()
 
