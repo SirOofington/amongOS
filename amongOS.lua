@@ -10,7 +10,11 @@ os.pullEvent = os.pullEventRaw
 selected_app = 1
 apps = {}
 
-local ext_apps = fs.list("externals/")
+if not fs.isDir("/external/") then
+    fs.makeDir("/external/")
+end
+
+local ext_apps = fs.list("/external/")
 
 for i=1,#ext_apps do
     local current_app = ext_apps[i]
