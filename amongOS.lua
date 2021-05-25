@@ -1,5 +1,4 @@
 success = os.loadAPI("aOSutils.lua")
-
 if not success then
     print("Problem loading aOSutils.lua, exiting...")
     
@@ -7,27 +6,37 @@ end
 
 os.pullEvent = os.pullEventRaw
 
+ext_app_dir = "/external/"
 selected_app = 1
 apps = {}
 
-if not fs.isDir("/external/") then
-    fs.makeDir("/external/")
-end
+function load_external_apps()
+    if not fs.isDir(ext_app_dir) then
+        fs.makeDir(ext_app_dir)
+    end
 
-local ext_apps = fs.list("/external/")
+    local ext_apps = fs.list(ext_app_dir)
 
-for i=1,#ext_apps do
-    local current_app = ext_apps[i]
+    for i=1,#ext_apps do
+        local current_app = ext_apps[i]
 
-    local ext_index = string.find(current_app,"%.")
+        local ext_index = string.find(current_app,"%.")
 
-    if ext_index ~= nil then
-        if string.sub(current_app,ext_index) == ".metadata" then
-            local file = fs.open("/external/"..current_app,"r")
-            table.insert(apps,1,textutils.unserialize(file.readAll()))
-            file.close()
+        if ext_index ~= nil then
+            if string.sub(current_app,ext_index) == ".metadata" then
+                local file = fs.open(ext_app_dir..current_app,"r")
+                table.insert(apps,1,textutils.unserialize(file.readAll()))
+                file.close()
+            end
         end
     end
+end
+
+function load_internal_apps()
+    table.insert(apps,{name="",ico=colors.black})
+    table.insert(apps,{name="Info",func=app_info,ico=colors.gray})
+    table.insert(apps,{name="Update",func=app_update,ico=colors.green})
+    table.insert(apps,{name="Shut Down",func=app_exit,ico=colors.red})
 end
 
 function draw_apps()
@@ -155,6 +164,9 @@ apps = {
     {name="Update",func=app_update,ico=colors.green},
     {name="Shut Down",func=app_exit,ico=colors.red}
 }
+
+load_external_apps()
+load_internal_apps()
 
 while true do
     term.clear()
