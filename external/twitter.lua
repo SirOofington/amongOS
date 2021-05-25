@@ -1,5 +1,3 @@
-os.loadAPI("aOSutils.lua")
-
 twt_theme = {
     head_txt = colors.white,
     head_bck = colors.cyan,
