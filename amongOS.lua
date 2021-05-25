@@ -10,6 +10,23 @@ os.pullEvent = os.pullEventRaw
 selected_app = 1
 apps = {}
 
+local ext_apps = fs.list("externals/")
+
+for i=1,#ext_apps do
+    local current_app = ext_apps[i]
+
+    local ext_index = string.find(current_app,"%.")
+
+    if ext_index == nil then goto continue end
+
+    if string.sub(current_app,ext_index) == ".metadata" then
+        local file = fs.open(current_app,"r")
+        table.insert(apps,1,file.readAll())
+        file.close()
+    end
+    ::continue::
+end
+
 function draw_apps()
     for i=1,#apps do
         aOSutils.set_ui_colors()
@@ -124,14 +141,13 @@ function app_update()
     end
     os.sleep(0.5)
 
-    shell.run("delete startup")
-    shell.run("copy "..aOSutils.os_name..".lua startup")
+    fs.delete("startup")
+    fs.copy(aOSutils.os_name..".lua","startup")
     os.reboot()
 end
 
 apps = {
-    {name="Twitter",func=nil,shell="twitter.lua",ico=colors.lightBlue},
-    {name="",func=nil,shell=nil,ico=colors.black},
+    {name="",ico=colors.black},
     {name="Info",func=app_info,ico=colors.gray},
     {name="Update",func=app_update,ico=colors.green},
     {name="Shut Down",func=app_exit,ico=colors.red}
