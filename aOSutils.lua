@@ -4,12 +4,12 @@ dev_mode = false
 w, h = term.getSize()
 event = {}
 
-head_txt = nil
-head_bck = nil
-ui_txt = nil
-ui_bck = nil
-sel_txt = nil
-sel_bck = nil
+head_txt = colors.black
+head_bck = colors.black
+ui_txt = colors.black
+ui_bck = colors.black
+sel_txt = colors.black
+sel_bck = colors.black
 
 function toggle_dev_mode()
     dev_mode = not dev_mode

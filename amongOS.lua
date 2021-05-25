@@ -188,7 +188,7 @@ load_internal_apps()
 
 while true do
     term.clear()
-    aOSutils.set_theme(aOSutils.home_theme)
+    aOSutils.set_theme(home_theme)
     aOSutils.draw_header()
     draw_apps()
     cycle_apps()

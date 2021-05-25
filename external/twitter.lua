@@ -15,7 +15,7 @@ function draw_main_menu()
 end
 
 while true do
-    aOSutils.set_theme(aOSutils.twt_theme)
+    aOSutils.set_theme(twt_theme)
     aOSutils.draw_header()
     draw_main_menu()
     os.sleep(5)
