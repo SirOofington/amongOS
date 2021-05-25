@@ -9,6 +9,14 @@ os.pullEvent = os.pullEventRaw
 ext_app_dir = "/external/"
 selected_app = 1
 apps = {}
+home_theme = {
+    head_txt = colors.yellow,
+    head_bck = colors.gray,
+    ui_txt = colors.white,
+    ui_bck = colors.black,
+    sel_txt = colors.black,
+    sel_bck = colors.white
+}
 
 function load_external_apps()
     if not fs.isDir(ext_app_dir) then
@@ -33,7 +41,9 @@ function load_external_apps()
 end
 
 function load_internal_apps()
-    table.insert(apps,{name="",ico=colors.black})
+    if(#apps == 0) then
+        table.insert(apps,{name="",ico=colors.black})
+    end
     table.insert(apps,{name="Info",func=app_info,ico=colors.gray})
     table.insert(apps,{name="Update",func=app_update,ico=colors.green})
     table.insert(apps,{name="Shut Down",func=app_exit,ico=colors.red})
@@ -51,6 +61,7 @@ function draw_apps()
 end
 
 function cycle_apps()
+    if apps[selected_app]["name"] == "" then selected_app = selected_app + 1 end
     aOSutils.pull_event()
     if aOSutils.event_key_held(keys.down) or aOSutils.event_mouse_scroll_down() then
         repeat
@@ -71,6 +82,19 @@ function cycle_apps()
             apps[selected_app]["func"]()
         elseif apps[selected_app]["shell"] ~= nil then
             shell.run(ext_app_dir..apps[selected_app]["shell"])
+        end
+    end
+
+    for i=1,#apps do
+        if aOSutils.event_mouse_click_region(3,i + 2,2 + string.len(apps[i]["name"]),i + 2) then
+            selected_app = i
+        end
+        if aOSutils.event_mouse_released_region(3,i + 2,2 + string.len(apps[i]["name"]),i + 2) and selected_app == i then
+            if apps[selected_app]["func"] ~= nil then
+                apps[selected_app]["func"]()
+            elseif apps[selected_app]["shell"] ~= nil then
+                shell.run(ext_app_dir..apps[selected_app]["shell"])
+            end
         end
     end
 end
@@ -163,7 +187,7 @@ load_internal_apps()
 
 while true do
     term.clear()
-    aOSutils.set_theme(aOSutils.home_theme)
+    aOSutils.set_theme(home_theme)
     aOSutils.draw_header()
     draw_apps()
     cycle_apps()
