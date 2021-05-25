@@ -23,8 +23,8 @@ for i=1,#ext_apps do
 
     if ext_index ~= nil then
         if string.sub(current_app,ext_index) == ".metadata" then
-            local file = fs.open(current_app,"r")
-            table.insert(apps,1,"/external/"..textutils.unserialize(file.readAll()))
+            local file = fs.open("/external/"..current_app,"r")
+            table.insert(apps,1,textutils.unserialize(file.readAll()))
             file.close()
         end
     end
