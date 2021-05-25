@@ -42,7 +42,7 @@ function load_external_apps()
 end
 
 function load_internal_apps()
-    if(#apps == 0) then
+    if(#apps ~= 0) then
         table.insert(apps,{name="",ico=colors.black})
     end
     table.insert(apps,{name="Info",func=app_info,ico=colors.gray})

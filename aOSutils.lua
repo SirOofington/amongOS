@@ -96,9 +96,9 @@ function event_mouse_click(x,y,right_click)
 
     right_click = right_click or false
     if right_click then
-        right_click = 1
+        right_click = 2
     else
-        right_click = 0
+        right_click = 1
     end
 
     if event[1] == "mouse_click" and event[2] == right_click and event[3] == x and event[4] == y then
@@ -111,9 +111,9 @@ function event_mouse_drag(x,y,right_click)
 
     right_click = right_click or false
     if right_click then
-        right_click = 1
+        right_click = 2
     else
-        right_click = 0
+        right_click = 1
     end
 
     if event[1] == "mouse_drag" and event[2] == right_click and event[3] == x and event[4] == y then
@@ -126,9 +126,9 @@ function event_mouse_released(x,y,right_click)
 
     right_click = right_click or false
     if right_click then
-        right_click = 1
+        right_click = 2
     else
-        right_click = 0
+        right_click = 1
     end
 
     if event[1] == "mouse_up" and event[2] == right_click and event[3] == x and event[4] == y then
@@ -155,9 +155,9 @@ function event_mouse_click_region(x1,y1,x2,y2,right_click)
     right_click = right_click or false
 
     if right_click then
-        right_click = 1
+        right_click = 2
     else
-        right_click = 0
+        right_click = 1
     end
 
     if event[1] == "mouse_click" and event[2] == right_click then
@@ -172,9 +172,9 @@ function event_mouse_released_region(x1,y1,x2,y2,right_click)
     right_click = right_click or false
 
     if right_click then
-        right_click = 1
+        right_click = 2
     else
-        right_click = 0
+        right_click = 1
     end
 
     if event[1] == "mouse_up" and event[2] == right_click then
