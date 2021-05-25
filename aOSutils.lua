@@ -11,6 +11,24 @@ ui_bck = home_theme.ui_bck
 sel_txt = home_theme.sel_txt
 sel_bck = home_theme.sel_bck
 
+home_theme = {
+    head_txt = colors.yellow,
+    head_bck = colors.gray,
+    ui_txt = colors.white,
+    ui_bck = colors.black,
+    sel_txt = colors.black,
+    sel_bck = colors.white
+}
+
+twt_theme = {
+    head_txt = colors.white,
+    head_bck = colors.cyan,
+    ui_txt = colors.black,
+    ui_bck = colors.white,
+    sel_txt = colors.cyan,
+    sel_bck = colors.white
+}
+
 function toggle_dev_mode()
     dev_mode = not dev_mode
 end
