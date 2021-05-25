@@ -17,14 +17,13 @@ for i=1,#ext_apps do
 
     local ext_index = string.find(current_app,"%.")
 
-    if ext_index == nil then goto continue end
-
-    if string.sub(current_app,ext_index) == ".metadata" then
-        local file = fs.open(current_app,"r")
-        table.insert(apps,1,file.readAll())
-        file.close()
+    if ext_index ~= nil then
+        if string.sub(current_app,ext_index) == ".metadata" then
+            local file = fs.open(current_app,"r")
+            table.insert(apps,1,file.readAll())
+            file.close()
+        end
     end
-    ::continue::
 end
 
 function draw_apps()
