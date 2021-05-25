@@ -25,7 +25,7 @@ function load_external_apps()
         if ext_index ~= nil then
             if string.sub(current_app,ext_index) == ".metadata" then
                 local file = fs.open(ext_app_dir..current_app,"r")
-                table.insert(apps,1,textutils.unserialize(file.readAll()))
+                table.insert(apps,textutils.unserialize(file.readAll()))
                 file.close()
             end
         end
@@ -70,7 +70,7 @@ function cycle_apps()
         if apps[selected_app]["func"] ~= nil then
             apps[selected_app]["func"]()
         elseif apps[selected_app]["shell"] ~= nil then
-            shell.run(apps[selected_app]["shell"])
+            shell.run(ext_app_dir..apps[selected_app]["shell"])
         end
     end
 end
