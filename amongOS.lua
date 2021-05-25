@@ -1,7 +1,7 @@
 success = os.loadAPI("aOSutils.lua")
 if not success then
     print("Problem loading aOSutils.lua, exiting...")
-    
+    exit()
 end
 
 os.pullEvent = os.pullEventRaw
@@ -9,6 +9,15 @@ os.pullEvent = os.pullEventRaw
 ext_app_dir = "/external/"
 selected_app = 1
 apps = {}
+
+home_theme = {
+    head_txt = colors.yellow,
+    head_bck = colors.gray,
+    ui_txt = colors.white,
+    ui_bck = colors.black,
+    sel_txt = colors.black,
+    sel_bck = colors.white
+}
 
 function load_external_apps()
     if not fs.isDir(ext_app_dir) then

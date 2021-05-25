@@ -1,5 +1,14 @@
 os.loadAPI("aOSutils.lua")
 
+twt_theme = {
+    head_txt = colors.white,
+    head_bck = colors.cyan,
+    ui_txt = colors.black,
+    ui_bck = colors.white,
+    sel_txt = colors.cyan,
+    sel_bck = colors.white
+}
+
 function draw_main_menu()
     aOSutils.set_sel_colors()
     aOSutils.draw_text(2,3,"Twitter")
