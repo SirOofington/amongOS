@@ -48,14 +48,18 @@ function load_internal_apps()
     table.insert(apps,{name="Info",func=app_info,ico=colors.gray})
     table.insert(apps,{name="Update",func=app_update,ico=colors.green})
     table.insert(apps,{name="Shut Down",func=app_exit,ico=colors.red})
+    table.insert(apps,{name="",ico=colors.black,hidden=true})
+    table.insert(apps,{name="Terminate",func=app_terminate,ico=colors.orange,hidden=true})
 end
 
 function draw_apps()
     for i=1,#apps do
         aOSutils.set_ui_colors()
         if i == selected_app then aOSutils.set_sel_colors() end
-        aOSutils.draw_text(3,i + 2,apps[i]["name"])
-        paintutils.drawPixel(1,i+2,apps[i]["ico"])
+        if not apps[i]["hidden"] or aOSutils.get_dev_mode() then
+            aOSutils.draw_text(3,i + 2,apps[i]["name"])
+            paintutils.drawPixel(1,i+2,apps[i]["ico"])
+        end
     end
     aOSutils.set_ui_colors()
 end
@@ -64,23 +68,19 @@ function cycle_apps()
     if apps[selected_app]["name"] == "" then selected_app = selected_app + 1 end
     aOSutils.pull_event()
     
-    if aOSutils.event_key_press(keys.backspace) and aOSutils.get_dev_mode() then
-        error()
-    end
-    
     if aOSutils.event_key_held(keys.down) or aOSutils.event_mouse_scroll_down() then
         repeat
             selected_app = selected_app - 1
             selected_app = (selected_app + 1) % #apps
             selected_app = selected_app + 1
-        until apps[selected_app]["name"] ~= ""
+        until apps[selected_app]["name"] ~= "" and (not apps[selected_app]["hidden"] or aOSutils.get_dev_mode())
     end
     if aOSutils.event_key_held(keys.up) or aOSutils.event_mouse_scroll_up() then
         repeat
             selected_app = selected_app - 1
             selected_app = (selected_app - 1) % #apps
             selected_app = selected_app + 1
-        until apps[selected_app]["name"] ~= ""
+        until apps[selected_app]["name"] ~= "" and (not apps[selected_app]["hidden"] or aOSutils.get_dev_mode())
     end
     if aOSutils.event_key_press(keys.enter) or key == aOSutils.event_key_press(keys.space) then
         if apps[selected_app]["func"] ~= nil then
@@ -198,6 +198,12 @@ function app_update()
     fs.delete("startup")
     fs.copy(aOSutils.os_name..".lua","startup")
     os.reboot()
+end
+
+function add_terminate()
+    aOSutils.set_ui_colors()
+    term.clear()
+    error()
 end
 
 load_external_apps()
