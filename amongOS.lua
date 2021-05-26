@@ -143,6 +143,19 @@ end
 
 function app_update()
     
+    local website = http.get("https://raw.githubusercontent.com/SirOofington/amongOS/test/filelist.txt")
+
+    if website then
+        local txt = website.readAll()
+        website.close()
+
+        local file = fs.open("filelist.txt","w")
+        file.write(tx)
+        file.close()
+    else
+        return nil
+    end
+
     local file = fs.open("filelist.txt","r")
     local file_list = {}
 

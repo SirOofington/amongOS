@@ -2,4 +2,3 @@ amongOS.lua
 aOSutils.lua
 external/twitter.lua
 external/twitter.metadata
-filelist.txt
