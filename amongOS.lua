@@ -63,6 +63,11 @@ end
 function cycle_apps()
     if apps[selected_app]["name"] == "" then selected_app = selected_app + 1 end
     aOSutils.pull_event()
+    
+    if aOSutils.event_key_press(keys.backspace) and aOSutils.get_dev_mode() then
+        error()
+    end
+    
     if aOSutils.event_key_held(keys.down) or aOSutils.event_mouse_scroll_down() then
         repeat
             selected_app = selected_app - 1
@@ -96,10 +101,6 @@ function cycle_apps()
                 shell.run(ext_app_dir..apps[selected_app]["shell"])
             end
         end
-    end
-
-    if aOSutils.event_key_press(keys.zero) and aOSutils.get_dev_mode() then
-        error()
     end
 end
 
