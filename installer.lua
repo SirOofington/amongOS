@@ -5,7 +5,7 @@ if website then
     website.close()
 
     local file = fs.open("filelist.txt","w")
-    file.write(tx)
+    file.write(txt)
     file.close()
 else
     return nil
