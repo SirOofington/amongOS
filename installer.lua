@@ -31,7 +31,7 @@ for i=1,#file_list do
         local txt = website.readAll()
         website.close()
 
-        local file = fs.open(filename,"w")
+        local file = fs.open("disk/"..filename,"w")
         file.write(txt)
         file.close()
     end
