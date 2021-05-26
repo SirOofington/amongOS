@@ -56,7 +56,7 @@ function draw_apps()
     for i=1,#apps do
         aOSutils.set_ui_colors()
         if i == selected_app then aOSutils.set_sel_colors() end
-        if not apps[i]["hidden"] or aOSutils.get_dev_mode() then
+        if apps[i]["hidden"] == nil or aOSutils.get_dev_mode() then
             aOSutils.draw_text(3,i + 2,apps[i]["name"])
             paintutils.drawPixel(1,i+2,apps[i]["ico"])
         end
@@ -73,14 +73,14 @@ function cycle_apps()
             selected_app = selected_app - 1
             selected_app = (selected_app + 1) % #apps
             selected_app = selected_app + 1
-        until apps[selected_app]["name"] ~= "" and (not apps[selected_app]["hidden"] or aOSutils.get_dev_mode())
+        until apps[selected_app]["name"] ~= "" and (apps[selected_app]["hidden"] == nil or aOSutils.get_dev_mode())
     end
     if aOSutils.event_key_held(keys.up) or aOSutils.event_mouse_scroll_up() then
         repeat
             selected_app = selected_app - 1
             selected_app = (selected_app - 1) % #apps
             selected_app = selected_app + 1
-        until apps[selected_app]["name"] ~= "" and (not apps[selected_app]["hidden"] or aOSutils.get_dev_mode())
+        until apps[selected_app]["name"] ~= "" and (apps[selected_app]["hidden"] == nil or aOSutils.get_dev_mode())
     end
     if aOSutils.event_key_press(keys.enter) or key == aOSutils.event_key_press(keys.space) then
         if apps[selected_app]["func"] ~= nil then
