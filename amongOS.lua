@@ -98,7 +98,7 @@ function cycle_apps()
         end
     end
 
-    if aOSutils.event_key_press(keys.backspace) and aOSutils.get_dev_mode then
+    if aOSutils.event_key_press(keys.zero) and aOSutils.get_dev_mode() then
         error()
     end
 end
