@@ -58,7 +58,6 @@ function draw_apps()
         paintutils.drawPixel(1,i+2,apps[i]["ico"])
     end
     aOSutils.set_ui_colors()
-    term.setCursorPos(0,0)
 end
 
 function cycle_apps()
@@ -97,6 +96,10 @@ function cycle_apps()
                 shell.run(ext_app_dir..apps[selected_app]["shell"])
             end
         end
+    end
+
+    if aOSutils.event_key_press(keys.backspace) and aOSutils.get_dev_mode then
+        exit()
     end
 end
 
@@ -150,7 +153,7 @@ function app_update()
         website.close()
 
         local file = fs.open("filelist.txt","w")
-        file.write(tx)
+        file.write(txt)
         file.close()
     else
         return nil
