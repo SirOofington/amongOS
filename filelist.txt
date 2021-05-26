@@ -1,3 +1,4 @@
+startup.lua
 amongOS.lua
 aOSutils.lua
 external/twitter.lua

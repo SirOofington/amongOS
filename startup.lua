@@ -1,0 +1,1 @@
+shell.run("amongOS.lua")
