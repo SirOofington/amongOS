@@ -59,7 +59,7 @@ function draw_header()
     set_head_colors()
     draw_text(1,1,string.format("%s %s",os_name,version))
     draw_text(w - string.len("ID: *****") + 1,1,string.format("ID: %5d",os.getComputerID()))
-    if dev_mode then
+    if get_dev_mode() then
         draw_text(1,h,"Dev Mode Enabled")
     end
     
