@@ -200,7 +200,7 @@ function app_update()
     os.reboot()
 end
 
-function add_terminate()
+function app_terminate()
     aOSutils.set_ui_colors()
     term.clear()
     error()
