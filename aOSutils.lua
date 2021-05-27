@@ -184,3 +184,8 @@ function event_mouse_released_region(x1,y1,x2,y2,right_click)
     end
     return false
 end
+
+function draw_debug_text(str)
+    draw_set_header()
+    draw_text(1,h,str)
+end

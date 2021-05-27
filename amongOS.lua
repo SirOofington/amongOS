@@ -65,7 +65,9 @@ function display_splash()
 
             paintutils.drawPixel(ox + j,oy + i,color)
 
-            os.sleep(0.05)
+            if color ~= colors.black then
+                os.sleep(0.05)
+            end
         end
     end
     os.sleep(1)
