@@ -25,8 +25,8 @@ function display_splash()
         "11111111400",
         "11332211400",
         "13222221114",
-        "11222211114",
-        "11111111114",
+        "14222241114",
+        "11444411114",
         "11111111114",
         "11111111114",
         "11111111114",
@@ -68,7 +68,6 @@ function display_splash()
             os.sleep(0.005)
         end
     end
-
     os.sleep(5)
 end
 
@@ -184,7 +183,7 @@ function app_info_exit()
     if aOSutils.event_key_press(keys.home) then
         aOSutils.toggle_dev_mode()
     end
-    return aOSutils.event_key_press(keys.enter) or aOSutils.event_key_press(keys.space)
+    return aOSutils.event_key_press(keys.enter) or aOSutils.event_key_press(keys.space) or aOSutils.mouse_released_region(1,7,#"Back",7)
 end
 
 function app_info()
@@ -256,6 +255,7 @@ end
 function app_terminate()
     aOSutils.set_ui_colors()
     term.clear()
+    term.setCursorPos(1,1)
     error()
 end
 
