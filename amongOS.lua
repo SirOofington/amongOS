@@ -22,18 +22,18 @@ home_theme = {
 function display_splash()
     local img = {
         "01111111000",
-        "11111111100",
-        "11222221100",
-        "12222222111",
-        "11222221111",
-        "11111111111",
-        "11111111111",
-        "11111111111",
-        "11111111111",
-        "11111111111",
-        "11111111100",
-        "11100011100",
-        "11100011100"
+        "11111111400",
+        "11332211400",
+        "13222221114",
+        "11222211114",
+        "11111111114",
+        "11111111114",
+        "11111111114",
+        "11111111114",
+        "11111111444",
+        "11444411400",
+        "11400011400",
+        "44400044400"
     }
 
     local ox = 8
@@ -49,18 +49,23 @@ function display_splash()
     for i=1,#img do
         for j=1,#img[i] do
             local color = nil
+            local pixel = string.sub(img[i],j,j)
 
-            if string.sub(img[i],j,j) == "1" then
+            if pixel == "1" then
                 color = colors.red
-            elseif string.sub(img[i],j,j) == "2" then
+            elseif pixel == "2" then
                 color = colors.lightBlue
+            elseif pixel == "3" then
+                color = colors.white
+            elseif pixel == "4" then
+                color = colors.brown
             else
                 color = colors.black
             end
-            
+
             paintutils.drawPixel(ox + j,oy + i,color)
 
-            os.sleep(0.01)
+            os.sleep(0.005)
         end
     end
 
