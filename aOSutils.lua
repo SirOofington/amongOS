@@ -74,6 +74,7 @@ function draw_header()
 end
 
 function pull_event()
+    os.startTimer(0.05)
     event = {os.pullEvent()}
     os.sleep(0.05)
 end
