@@ -14,9 +14,12 @@ function draw_main_menu()
     aOSutils.draw_text(2,3,"Twitter")
     local buttons = {"View Twitter", "Send Tweet", "Edit Profile", "Exit"}
     for i=1,#buttons do
-        if i % 2 == 1 then local bx = 2 else local bx = aOSutils.w - #buttons[i] end
+        
+        local bx
+        
+        if i % 2 == 1 then bx = 2 else bx = aOSutils.w - #buttons[i] end
 
-        local by = 5 + 2 * math.floor((x-1)/2)
+        local by = 5 + 2 * math.floor((i-1)/2)
 
         aOSutils.set_ui_colors()
         if i == selected then aOSutils.set_sel_colors() end
