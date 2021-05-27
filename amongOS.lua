@@ -174,10 +174,9 @@ end
 function app_info_draw_interface()
     aOSutils.set_ui_colors()
     aOSutils.draw_text(1,3,string.format("Phone ID: %05d",os.getComputerID()))
-    aOSutils.draw_text(1,4,"Owner: ")
-    aOSutils.draw_text(1,5,string.format("Firmware Version: %s",aOSutils.version))
+    aOSutils.draw_text(1,4,string.format("Firmware Version: %s",aOSutils.version))
     aOSutils.set_sel_colors()
-    aOSutils.draw_text(1,7,"Back")
+    aOSutils.draw_text(1,6,"Back")
 end
 
 function app_info_exit()
@@ -185,7 +184,7 @@ function app_info_exit()
     if aOSutils.event_key_press(keys.home) then
         aOSutils.toggle_dev_mode()
     end
-    return aOSutils.event_key_press(keys.enter) or aOSutils.event_key_press(keys.space) or aOSutils.event_mouse_released_region(1,7,#"Back",7)
+    return aOSutils.event_key_press(keys.enter) or aOSutils.event_key_press(keys.space) or aOSutils.event_mouse_released_region(1,6,#"Back",6)
 end
 
 function app_info()

@@ -3,16 +3,18 @@ twt_theme = {
     head_bck = colors.cyan,
     ui_txt = colors.black,
     ui_bck = colors.white,
-    sel_txt = colors.cyan,
-    sel_bck = colors.white
+    sel_txt = colors.white,
+    sel_bck = colors.lightBlue
 }
 
 selected = 1
 
+buttons = {"Timeline", "Send Tweet", "Edit Profile", "Exit"}
+
 function draw_main_menu()
     aOSutils.set_sel_colors()
     aOSutils.draw_text(2,3,"Twitter")
-    local buttons = {"View Twitter", "Send Tweet", "Edit Profile", "Exit"}
+
     for i=1,#buttons do
         
         local bx

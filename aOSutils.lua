@@ -58,11 +58,18 @@ function draw_header()
     
     set_head_colors()
     draw_text(1,1,string.format("%s %s",os_name,version))
-    draw_text(w - string.len("ID: *****") + 1,1,string.format("ID: %5d",os.getComputerID()))
+
+    local id_txt = string.format("ID: %5d",os.getComputerID())
+
+    draw_text(w - #id_txt + 1,1,id_txt)
     if get_dev_mode() then
-        draw_text(1,h,"Dev Mode Enabled")
+        draw_text(1,h,"Dev")
     end
     
+    local time_txt = textutils.formatTime(os.time(),false)
+
+    draw_text(w - #time_txt + 1,h,time_txt)
+
     term.setCursorPos(0,0)
 end
 
