@@ -19,6 +19,50 @@ home_theme = {
     sel_bck = colors.white
 }
 
+function display_splash()
+    local img = {
+        "01111111000",
+        "11111111100",
+        "11222221100",
+        "12222222111",
+        "11222221111",
+        "11111111111",
+        "11111111111",
+        "11111111111",
+        "11111111111",
+        "11111111111",
+        "11111111100",
+        "11100011100",
+        "11100011100"
+    }
+
+    local ox = 8
+    local oy = 4
+
+    aOSutils.set_theme(home_theme)
+
+    for i=1,#img do
+        for j=1,#img[i] do
+            local color = nil
+
+            if string.sub(img[i],j,j) == "1" then
+                color = colors.red
+            elseif string.sub(img[i],j,j) == "2" then
+                color = colors.lightBlue
+            else
+                color = colors.black
+            end
+            
+            paintutils.drawPixel(ox + j,oy + i,color)
+        end
+        aOSutils.set_ui_colors()
+        aOSutils.draw_text(10,3,aOSutils.os_name)
+
+        os.sleep(5)
+
+    end
+end
+
 function load_external_apps()
     if not fs.isDir(ext_app_dir) then
         fs.makeDir(ext_app_dir)
@@ -205,6 +249,8 @@ function app_terminate()
     term.clear()
     error()
 end
+
+display_splash()
 
 load_external_apps()
 load_internal_apps()
