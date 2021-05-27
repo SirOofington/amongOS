@@ -14,8 +14,7 @@ function draw_main_menu()
     aOSutils.draw_text(2,3,"Twitter")
     local buttons = {"View Twitter", "Send Tweet", "Edit Profile", "Exit"}
     for i=1,#buttons do
-        if i % 2 == 1 then local bx = 2
-        else local bx = aOSutils.w - #buttons[i] end
+        if i % 2 == 1 then local bx = 2 else local bx = aOSutils.w - #buttons[i] end
 
         local by = 5 + 2 * math.floor((x-1)/2)
 

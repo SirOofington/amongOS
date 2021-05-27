@@ -65,10 +65,10 @@ function display_splash()
 
             paintutils.drawPixel(ox + j,oy + i,color)
 
-            os.sleep(0.005)
+            os.sleep(0.05)
         end
     end
-    os.sleep(5)
+    os.sleep(1)
 end
 
 function load_external_apps()
@@ -183,7 +183,7 @@ function app_info_exit()
     if aOSutils.event_key_press(keys.home) then
         aOSutils.toggle_dev_mode()
     end
-    return aOSutils.event_key_press(keys.enter) or aOSutils.event_key_press(keys.space) or aOSutils.mouse_released_region(1,7,#"Back",7)
+    return aOSutils.event_key_press(keys.enter) or aOSutils.event_key_press(keys.space) or aOSutils.event_mouse_released_region(1,7,#"Back",7)
 end
 
 function app_info()
