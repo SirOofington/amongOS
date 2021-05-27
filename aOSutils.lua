@@ -76,7 +76,10 @@ end
 function pull_event()
     os.startTimer(0.05)
     event = {os.pullEvent()}
-    os.sleep(0.05)
+    if event[1] ~= "timer" then
+        os.sleep(0.05)
+        os.cancelTimer()
+    end
 end
 
 function event_key_press(key_value)
