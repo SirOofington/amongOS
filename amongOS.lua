@@ -41,6 +41,11 @@ function display_splash()
 
     aOSutils.set_theme(home_theme)
 
+    term.clear()
+
+    aOSutils.set_ui_colors()
+    aOSutils.draw_text(10,3,aOSutils.os_name)
+
     for i=1,#img do
         for j=1,#img[i] do
             local color = nil
@@ -54,13 +59,12 @@ function display_splash()
             end
             
             paintutils.drawPixel(ox + j,oy + i,color)
+
+            os.sleep(0.01)
         end
-        aOSutils.set_ui_colors()
-        aOSutils.draw_text(10,3,aOSutils.os_name)
-
-        os.sleep(5)
-
     end
+
+    os.sleep(5)
 end
 
 function load_external_apps()
