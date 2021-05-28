@@ -29,10 +29,12 @@ function set_colors(type)
 end
 
 function draw_header()
-    paintutils.drawFilledBox(1,1,w,h,ui_bck)
+    set_colors("ui")
+    paintutils.drawFilledBox(1,1,w,h,term.getBackgroundColor())
+    set_colors("head")
     for i=1,w do
-        paintutils.drawPixel(i,1,head_bck)
-        paintutils.drawPixel(i,h,head_bck)
+        paintutils.drawPixel(i,1,term.getBackgroundColor())
+        paintutils.drawPixel(i,h,term.getBackgroundColor())
     end
     
     set_colors("head")

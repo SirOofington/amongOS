@@ -41,9 +41,8 @@ function display_splash()
 
     aOSutils.set_theme(home_theme)
 
-    term.clear()
-
     aOSutils.set_colors("ui")
+    term.clear()
     aOSutils.draw_text(10,3,aOSutils.os_name)
 
     for i=1,#img do
@@ -161,7 +160,7 @@ end
 function app_exit()
     term.clear()
     aOSutils.draw_header()
-    aOSutils.set0_colors("ui")
+    aOSutils.set_colors("ui")
     aOSutils.draw_text(1,3,"Shutting down")
     for i=1,3 do
         os.sleep(0.5)
