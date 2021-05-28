@@ -65,8 +65,6 @@ function draw_header()
     if get_dev_mode() then
         draw_text(1,h,"Dev")
     end
-    
-    pull_event("timer")
 
     local time_txt = textutils.formatTime(os.time(),false)
 
