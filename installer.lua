@@ -1,33 +1,51 @@
-local args = {...}
-local branch, dir, verbose
+local tArgs = {...}
+local branch, dir, verbose, author
 
-if not (args[1] == nil) then
-    branch = tostring(args[1])
+-- Arguments and Usage function
+local function printUsage()
+    local programName = arg[0] or fs.getName(shell.getRunningProgram())
+    print("Usage:")
+    print(programName .. " <branch> <directory> <verbose> <author>\n")
+    print("Defaults:\n - branch = main\n - directory = disk\n - verbose = true\n - author = SirOofington")
+end
+
+if tArgs[1] == "help" then
+    printUsage()
+    return
+elseif not (tArgs[1] == nil) then
+    branch = tostring(tArgs[1])
 else
     branch = "main"
 end
 
-if args[2] == nil then
+if tArgs[2] == nil then
     dir = "disk/"
-elseif args[2] == "none" then
+elseif tArgs[2] == "none" then
     dir = ""
 else
-    dir = tostring(args[2]).."/"
+    dir = tostring(tArgs[2]).."/"
 end
 
-if not (args[3] == nil) and (args[3] == "false") then
+if not (tArgs[3] == nil) and (tArgs[3] == "false") then
   verbose = false
 else
   verbose = true
 end
 
+if not (tArgs[4] == nil) then
+  author = tostring(tArgs[4])
+else
+  author = "SirOofington"
+end
+
 if verbose then
   print("--amongOS installer--")
-  print("Pulling files from "..branch.." branch")
+  print("Pulling files from "..author.."/"..branch.." branch")
   print("Installing to directory \""..dir.."\"")
 end
 
-local website = http.get("https://raw.githubusercontent.com/SirOofington/amongOS/"..branch.."/filelist.txt")
+-- The actual installation part
+local website = http.get("https://raw.githubusercontent.com/"..author.."/amongOS/"..branch.."/filelist.txt")
 
 local file_list = {}
 
@@ -46,7 +64,7 @@ end
 
 for i=1,#file_list do
     local filename = file_list[i]
-    local website = http.get("https://raw.githubusercontent.com/SirOofington/amongOS/"..branch.."/"..filename)
+    local website = http.get("https://raw.githubusercontent.com/"..author.."/amongOS/"..branch.."/"..filename)
     if website then
         local txt = website.readAll()
         website.close()
