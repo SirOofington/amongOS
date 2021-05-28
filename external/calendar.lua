@@ -27,7 +27,7 @@ function draw_calendar()
     local oy
 
     for i=1,7 do
-        ox = 4 + 3 * i
+        ox = 4 + 3 * (i - 1)
         oy = 7
         aOSutils.set_colors("ui")
         aOSutils.draw_text(ox,oy,days[i])
@@ -35,8 +35,8 @@ function draw_calendar()
 
     for i=1,28 do
         ox = ((i - 1) % 7) + 1
-        ox = 4 + 3 * ox
-        oy = 9 + 2 * math.floor(i/7)
+        ox = 4 + 3 * (ox - 1)
+        oy = 9 + 2 * math.floor((i - 1)/7)
         aOSutils.set_colors("ui")
         if day == i then aOSutils.set_colors("day") end
         aOSutils.draw_text(ox,oy,string.format("%2d",i))
