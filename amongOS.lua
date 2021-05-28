@@ -43,7 +43,7 @@ function display_splash()
 
     term.clear()
 
-    aOSutils.set_ui_colors()
+    aOSutils.set_colors("ui")
     aOSutils.draw_text(10,3,aOSutils.os_name)
 
     for i=1,#img do
@@ -108,14 +108,14 @@ end
 
 function draw_apps()
     for i=1,#apps do
-        aOSutils.set_ui_colors()
-        if i == selected_app then aOSutils.set_sel_colors() end
+        aOSutils.set_colors("ui")
+        if i == selected_app then aOSutils.set_colors("sel") end
         if apps[i]["hidden"] == nil or aOSutils.get_dev_mode() then
             aOSutils.draw_text(3,i + 2,apps[i]["name"])
             paintutils.drawPixel(1,i+2,apps[i]["ico"])
         end
     end
-    aOSutils.set_ui_colors()
+    aOSutils.set_colors("ui")
 end
 
 function cycle_apps()
@@ -161,7 +161,7 @@ end
 function app_exit()
     term.clear()
     aOSutils.draw_header()
-    aOSutils.set_ui_colors()
+    aOSutils.set0_colors("ui")
     aOSutils.draw_text(1,3,"Shutting down")
     for i=1,3 do
         os.sleep(0.5)
@@ -172,10 +172,10 @@ function app_exit()
 end
 
 function app_info_draw_interface()
-    aOSutils.set_ui_colors()
+    aOSutils.set_colors("ui")
     aOSutils.draw_text(1,3,string.format("Phone ID: %05d",os.getComputerID()))
     aOSutils.draw_text(1,4,string.format("Firmware Version: %s",aOSutils.version))
-    aOSutils.set_sel_colors()
+    aOSutils.set_colors("sel")
     aOSutils.draw_text(1,6,"Back")
 end
 
@@ -240,7 +240,7 @@ function app_update()
     end
     term.clear()
     aOSutils.draw_header()
-    aOSutils.set_ui_colors()
+    aOSutils.set_colors("ui")
     aOSutils.draw_text(1,3,"Updating")
     for i=1,3 do
         os.sleep(0.5)
@@ -254,7 +254,7 @@ function app_update()
 end
 
 function app_terminate()
-    aOSutils.set_ui_colors()
+    aOSutils.set_colors("ui")
     term.clear()
     term.setCursorPos(1,1)
     error()

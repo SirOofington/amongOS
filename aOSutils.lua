@@ -3,13 +3,7 @@ version = "v1.0"
 dev_mode = false
 w, h = term.getSize()
 event = {}
-
-head_txt = colors.black
-head_bck = colors.black
-ui_txt = colors.black
-ui_bck = colors.black
-sel_txt = colors.black
-sel_bck = colors.black
+theme = {}
 
 function toggle_dev_mode()
     dev_mode = not dev_mode
@@ -25,28 +19,13 @@ function draw_text(x,y,str)
     term.setCursorPos(0,0)
 end
 
-function set_theme(theme)
-    head_txt = theme["head_txt"]
-    head_bck = theme["head_bck"]
-    ui_txt = theme["ui_txt"]
-    ui_bck = theme["ui_bck"]
-    sel_txt = theme["sel_txt"]
-    sel_bck = theme["sel_bck"]
+function set_theme(new_theme)
+    theme = new_theme
 end
 
-function set_head_colors()
-    term.setBackgroundColor(head_bck)
-    term.setTextColor(head_txt)
-end
-
-function set_ui_colors()
-    term.setBackgroundColor(ui_bck)
-    term.setTextColor(ui_txt)
-end
-
-function set_sel_colors()
-    term.setBackgroundColor(sel_bck)
-    term.setTextColor(sel_txt)
+function set_colors(type)
+    term.setBackgroundColor(theme[type.."_bck"])
+    term.setTextColor(theme[type.."_txt"])
 end
 
 function draw_header()
@@ -56,7 +35,7 @@ function draw_header()
         paintutils.drawPixel(i,h,head_bck)
     end
     
-    set_head_colors()
+    set_colors("head")
     draw_text(1,1,string.format("%s %s",os_name,version))
 
     local id_txt = string.format("ID: %5d",os.getComputerID())
@@ -197,6 +176,6 @@ function event_mouse_released_region(x1,y1,x2,y2,right_click)
 end
 
 function draw_debug_text(str)
-    draw_set_header()
+    set_colors("head")
     draw_text(1,h,str)
 end
