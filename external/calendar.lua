@@ -13,7 +13,7 @@ calendar_theme = {
 
 function exit_calendar()
     aOSutils.pull_event()
-    return aOSutils.event_key_press(keys.enter) or aOSutils.event_key_press(keys.space) or aOSutils.mouse_released_region(20,18,20 + #"Exit" - 1,18)
+    return aOSutils.event_key_press(keys.enter) or aOSutils.event_key_press(keys.space) or aOSutils.event_mouse_released_region(20,18,20 + #"Exit" - 1,18)
 end
 
 function draw_calendar()
