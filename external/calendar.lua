@@ -49,7 +49,7 @@ function draw_calendar()
         aOSutils.draw_text(ox,oy,string.format("%2d",i))
         aOSutils.set_colors("cal")
         if i % 7 ~= 0 then aOSutils.draw_text(ox + 2,oy,"|") end
-        aOSutils.draw_text(4,oy - 1,"--+--+--+--+--+--+--") end
+        aOSutils.draw_text(4,oy - 1,"--+--+--+--+--+--+--")
     end
 end
 
