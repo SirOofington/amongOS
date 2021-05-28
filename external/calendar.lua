@@ -37,7 +37,7 @@ function draw_calendar()
         aOSutils.set_colors("cal")
         if ((day - 1) % 7) + 1 == i then aOSutils.set_colors("day") end
         aOSutils.draw_text(ox,oy,days[i])
-        if day % 7 ~= 0 then aOSutils.draw_text(ox + 2,oy,"|") end
+        if i % 7 ~= 0 then aOSutils.draw_text(ox + 2,oy,"|") end
     end
 
     for i=1,28 do
@@ -47,8 +47,9 @@ function draw_calendar()
         aOSutils.set_colors("cal")
         if day == i then aOSutils.set_colors("day") end
         aOSutils.draw_text(ox,oy,string.format("%2d",i))
-        if day % 7 ~= 0 then aOSutils.draw_text(ox + 2,oy,"|") end
-        if math.floor((i - 1)/7) ~= 3 then aOSutils.draw_text(4,oy + 1,"--+--+--+--+--+--+--") end
+        aOSutils.set_colors("cal")
+        if i % 7 ~= 0 then aOSutils.draw_text(ox + 2,oy,"|") end
+        aOSutils.draw_text(4,oy - 1,"--+--+--+--+--+--+--") end
     end
 end
 
