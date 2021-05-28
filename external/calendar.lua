@@ -11,6 +11,11 @@ calendar_theme = {
     cal_bck = colors.white
 }
 
+function exit_calendar()
+    aOSutils.pull_event()
+    return aOSutils.event_key_press(keys.enter) or aOSutils.event_key_press(keys.space) or aOSutils.mouse_released_region(20,18,20 + #"Exit" - 1,18)
+end
+
 function draw_calendar()
     local title = "Calendar"
     aOSutils.set_colors("ui")
@@ -52,12 +57,16 @@ function draw_calendar()
         if i % 7 ~= 0 then aOSutils.draw_text(ox + 2,oy,"|") end
         aOSutils.draw_text(4,oy - 1,"--+--+--+--+--+--+--")
     end
+
+    aOSutils.set_colors("sel")
+    aOSutils.draw_text(20,18,"Exit")
 end
 
 while true do
     aOSutils.set_theme(calendar_theme)
     aOSutils.draw_header()
     draw_calendar()
-    os.sleep(5)
-    break
+    if exit_calendar() then
+        break
+    end
 end
