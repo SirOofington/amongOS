@@ -12,7 +12,7 @@ selected = 1
 buttons = {"Timeline", "Send Tweet", "Edit Profile", "Exit"}
 
 function draw_main_menu()
-    aOSutils.set_sel_colors()
+    aOSutils.set_colors("sel")
     aOSutils.draw_text(2,3,"Twitter")
 
     for i=1,#buttons do
@@ -23,8 +23,8 @@ function draw_main_menu()
 
         local by = 5 + 2 * math.floor((i-1)/2)
 
-        aOSutils.set_ui_colors()
-        if i == selected then aOSutils.set_sel_colors() end
+        aOSutils.set_colors("ui")
+        if i == selected then aOSutils.set_colors("sel") end
 
         aOSutils.draw_text(bx,by,buttons[i])
     end
