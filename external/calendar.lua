@@ -6,7 +6,9 @@ calendar_theme = {
     sel_txt = colors.black,
     sel_bck = colors.white,
     day_txt = colors.red,
-    day_bck = colors.black
+    day_bck = colors.white,
+    cal_txt = colors.black,
+    cal_bck = colors.white
 }
 
 function draw_calendar()
@@ -21,6 +23,8 @@ function draw_calendar()
     local season = ((math.floor((raw_day-1)/28)) % 4) + 1
     local year = math.floor((raw_day-1)/112) + 1
 
+    aOSutils.set_colors("cal")
+    paintutils.drawFilledBox(4,5,23,15)
     aOSutils.draw_text(4,5,seasons[season])
     aOSutils.draw_text(15,5,string.format("Year %4d",year))
 
@@ -30,7 +34,8 @@ function draw_calendar()
     for i=1,7 do
         ox = 4 + 3 * (i - 1)
         oy = 7
-        aOSutils.set_colors("ui")
+        aOSutils.set_colors("cal")
+        if ((day - 1) % 7) + 1 == i then aOSutils.set_colors("day") end
         aOSutils.draw_text(ox,oy,days[i])
     end
 
@@ -38,7 +43,7 @@ function draw_calendar()
         ox = ((i - 1) % 7) + 1
         ox = 4 + 3 * (ox - 1)
         oy = 9 + 2 * math.floor((i - 1)/7)
-        aOSutils.set_colors("ui")
+        aOSutils.set_colors("cal")
         if day == i then aOSutils.set_colors("day") end
         aOSutils.draw_text(ox,oy,string.format("%2d",i))
     end
