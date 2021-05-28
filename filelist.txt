@@ -3,3 +3,5 @@ amongOS.lua
 aOSutils.lua
 external/twitter.lua
 external/twitter.metadata
+external/calendar.lua
+external/calendar.metadata

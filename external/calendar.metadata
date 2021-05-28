@@ -1,0 +1,5 @@
+{
+    name="Calendar",
+    shell="calendar.lua",
+    ico=1
+}

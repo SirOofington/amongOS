@@ -92,6 +92,7 @@ function load_external_apps()
             end
         end
     end
+    table.sort(apps)
 end
 
 function load_internal_apps()
