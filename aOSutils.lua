@@ -66,6 +66,8 @@ function draw_header()
         draw_text(1,h,"Dev")
     end
     
+    pull_event("timer")
+
     local time_txt = textutils.formatTime(os.time(),false)
 
     draw_text(w - #time_txt + 1,h,time_txt)
@@ -73,9 +75,9 @@ function draw_header()
     term.setCursorPos(0,0)
 end
 
-function pull_event()
+function pull_event(check_event)
     local timer = os.startTimer(0.05)
-    event = {os.pullEvent()}
+    event = {os.pullEvent(check_event)}
     if event[1] ~= "timer" then
         os.sleep(0.05)
         os.cancelTimer(timer)
