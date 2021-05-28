@@ -198,48 +198,19 @@ function app_info()
 end
 
 function app_update()
-    
-    local website = http.get("https://raw.githubusercontent.com/SirOofington/amongOS/test/filelist.txt")
+    local branch
 
-    if website then
-        local txt = website.readAll()
-        website.close()
-
-        local file = fs.open("filelist.txt","w")
-        file.write(txt)
-        file.close()
+    if aOSutils.get_dev_mode() then
+        branch = "test"
     else
-        return nil
+        branch = "main"
     end
 
-    local file = fs.open("filelist.txt","r")
-    local file_list = {}
-
-    while true do
-        local temp = file.readLine()
-        if temp == nil then
-            break
-        end
-        table.insert(file_list,temp)
-    end
-
-    file.close()
-
-    for i=1,#file_list do
-        local filename = file_list[i]
-        local website = http.get("https://raw.githubusercontent.com/SirOofington/amongOS/test/"..filename)
-        if website then
-            local txt = website.readAll()
-            website.close()
-
-            local file = fs.open(filename,"w")
-            file.write(txt)
-            file.close()
-        end
-    end
+    shell.run("installer "..branch.." none false")
+    
     term.clear()
     aOSutils.draw_header()
-    aOSutils.set_colors("ui")
+    aOSutils.set_ui_colors()
     aOSutils.draw_text(1,3,"Updating")
     for i=1,3 do
         os.sleep(0.5)
