@@ -12,7 +12,7 @@ calendar_theme = {
 function draw_calendar()
     local title = "Calendar"
     aOSutils.set_colors("ui")
-    aOSutils.draw_text(3,aOSutils.w - math.floor(#title/2))
+    aOSutils.draw_text(3,aOSutils.w - math.floor(#title/2),title)
 
     local days = {"Su","Mo","Tu","We","Th","Fr","Sa"}
     local seasons = {"Spring","Summer","Fall","Winter"}
