@@ -121,7 +121,7 @@ end
 function cycle_apps()
     if apps[selected_app]["name"] == "" then selected_app = selected_app + 1 end
     aOSutils.pull_event()
-    
+
     if aOSutils.event_key_held(keys.down) or aOSutils.event_mouse_scroll_down() then
         repeat
             selected_app = selected_app - 1
@@ -207,8 +207,8 @@ function app_update()
         branch = "main"
     end
 
-    shell.run("installer "..branch.." none false")
-    
+    shell.run("installer "..branch.." none false NanoSpectr")
+
     term.clear()
     aOSutils.draw_header()
     aOSutils.set_colors("ui")
