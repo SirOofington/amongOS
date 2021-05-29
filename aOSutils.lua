@@ -30,7 +30,7 @@ end
 
 function draw_header()
     set_colors("ui")
-    paintutils.drawFilledBox(1,1,w,h,term.getBackgroundColor())
+    term.clear()
     set_colors("head")
     for i=1,w do
         paintutils.drawPixel(i,1,term.getBackgroundColor())
