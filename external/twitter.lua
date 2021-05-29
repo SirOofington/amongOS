@@ -65,7 +65,7 @@ function draw_main_menu()
         aOSutils.set_colors("ui")
         if i == selected then aOSutils.set_colors("sel") end
 
-        aOSutils.draw_text(bx,by,buttons["main_menu"[i]["name"])
+        aOSutils.draw_text(bx,by,buttons["main_menu"][i]["name"])
     end
 end
 
