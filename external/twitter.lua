@@ -30,11 +30,12 @@ function input_main_menu()
         end
     end
     if aOSutils.event_key_held(keys.up) then
-        selected = ((selected + 1) % #buttons["main_menu"]) + 1
+        selected = selected - 2
     end
     if aOSutils.event_key_held(keys.down) then
-        selected = ((selected + 3) % #buttons["main_menu"]) + 1
+        selected = selected + 2
     end
+    selected = ((selected - 1) % #buttons["main_menu"]) + 1
     if aOSutils.event_key_press(keys.enter) or aOSutils.event_key_press(keys.space) then
         if buttons["main_menu"][selected]["func"] ~= nil then
             buttons["main_menu"][selected]["func"]()
