@@ -55,10 +55,10 @@ function draw_header()
 end
 
 function pull_event(check_event)
-    local timer = os.startTimer(0.05)
+    local timer = os.startTimer(0.1)
     event = {os.pullEvent(check_event)}
     if event[1] ~= "timer" then
-        os.sleep(0.05)
+        os.sleep(0.1)
         os.cancelTimer(timer)
     end
 end
