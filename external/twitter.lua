@@ -29,7 +29,7 @@ function input_main_menu()
             selected = selected + 1
         end
     end
-    if aOSutils.event_key_held(keys.down) then
+    if aOSutils.event_key_held(keys.up) then
         selected = ((selected + 1) % #buttons["main_menu"]) + 1
     end
     if aOSutils.event_key_held(keys.down) then
