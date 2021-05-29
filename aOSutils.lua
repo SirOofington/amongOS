@@ -186,22 +186,14 @@ function event_mouse_released_region(x1,y1,x2,y2,right_click)
     return false
 end
 
-function event_keyboard_input(str, cap)
-    cap = cap or false
-    local new_char
-    local new_key = event_key_held()
-
-    if #keys.getName(new_key) == 1 then
-        new_char = keys.getName()
-        if cap then
-            new_char = string.upper(new_char)
-        end
-        return str..new_char
+function event_character_input(str)
+    if event[1] == "char" then
+        str = str..event[2]
     end
-
-    if keys.getName(new_key) == "backspace" then
-        return string.sub(str,1,#str - 1)
+    if event[1] == "key" and event[2] == "backspace" then
+        str = string.sub(str,1,-2)
     end
+    return str
 end
 
 function draw_debug_text(str)
