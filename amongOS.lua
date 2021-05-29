@@ -1,7 +1,6 @@
 success = os.loadAPI("aOSutils.lua")
 if not success then
-    print("Problem loading aOSutils.lua, exiting...")
-    exit()
+    error("Problem loading aOSutils.lua, exiting...")
 end
 
 os.pullEvent = os.pullEventRaw
@@ -100,8 +99,9 @@ function load_internal_apps()
     end
     table.insert(apps,{name="Info",func=app_info,ico=colors.gray})
     table.insert(apps,{name="Update",func=app_update,ico=colors.green})
-    table.insert(apps,{name="Terminate",func=app_terminate,ico=colors.orange,hidden=true})
     table.insert(apps,{name="Shut Down",func=app_exit,ico=colors.red})
+    table.insert(apps,{name="",ico=colors.black,hidden=true})
+    table.insert(apps,{name="Terminate",func=app_terminate,ico=colors.orange,hidden=true})
 end
 
 function draw_apps()
