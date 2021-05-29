@@ -4,7 +4,9 @@ twt_theme = {
     ui_txt = colors.black,
     ui_bck = colors.white,
     sel_txt = colors.white,
-    sel_bck = colors.lightBlue
+    sel_bck = colors.lightBlue,
+    title_txt = colors.white,
+    title_bck = colors.blue
 }
 
 selected = 1
@@ -12,8 +14,9 @@ selected = 1
 buttons = {"Timeline", "Send Tweet", "Edit Profile", "Exit"}
 
 function draw_main_menu()
-    aOSutils.set_colors("sel")
-    aOSutils.draw_text(2,3,"Twitter")
+    aOSutils.set_colors("title")
+    paintutils.drawLine(2,6,25,6)
+    aOSutils.draw_text(7,6,"T W I T T E R")
 
     for i=1,#buttons do
         
@@ -21,7 +24,7 @@ function draw_main_menu()
         
         if i % 2 == 1 then bx = 2 else bx = aOSutils.w - #buttons[i] end
 
-        local by = 5 + 2 * math.floor((i-1)/2)
+        local by = 13 + 2 * math.floor((i-1)/2)
 
         aOSutils.set_colors("ui")
         if i == selected then aOSutils.set_colors("sel") end

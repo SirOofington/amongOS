@@ -64,6 +64,9 @@ function pull_event(check_event)
 end
 
 function event_key_press(key_value)
+    if event[1] == "key" and key_value == nil and event[3] == false then
+        return event[2]
+    end
     if event[1] == "key" and event[2] == key_value and event[3] == false then
         return true
     end
@@ -71,6 +74,9 @@ function event_key_press(key_value)
 end
 
 function event_key_held(key_value)
+    if event[1] == "key" and key_value == nil then
+        return event[2]
+    end
     if event[1] == "key" and event[2] == key_value then
         return true
     end
@@ -78,6 +84,9 @@ function event_key_held(key_value)
 end
 
 function event_key_released(key_value)
+    if event[1] == "key" and key_value == nil then
+        return event[2]
+    end
     if event[1] == "key_up" and event[2] == key_value then
         return true
     end
@@ -175,6 +184,24 @@ function event_mouse_released_region(x1,y1,x2,y2,right_click)
         end
     end
     return false
+end
+
+function event_keyboard_input(str, cap)
+    cap = cap or false
+    local new_char
+    local new_key = event_key_held()
+
+    if #keys.getName(new_key) == 1 then
+        new_char = keys.getName()
+        if cap then
+            new_char = string.upper(new_char)
+        end
+        return str..new_char
+    end
+
+    if keys.getName(new_key) == "backspace" then
+        return string.sub(str,1,#str - 1)
+    end
 end
 
 function draw_debug_text(str)
