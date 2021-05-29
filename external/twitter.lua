@@ -49,7 +49,7 @@ end
 function draw_main_menu()
     aOSutils.set_colors("title")
     paintutils.drawFilledBox(2,5,25,7)
-    aOSutils.draw_text(7,6,"T W I T T E R")
+    aOSutils.draw_text(7,6,"T W I T T E R "..string.char(169))
 
     for i=1,#buttons["main_menu"] do
         
