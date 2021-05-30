@@ -18,12 +18,23 @@ username = "SirOofington"
 
 function draw_send_tweet_menu()
     aOSutils.set_colors("title")
-    aOSutils.draw_text(2,3,"Send Tweet")
+    paintutils.drawFilledBox(2,3,13,5)
+    aOSutils.draw_text(3,4,"Send Tweet")
+
     aOSutils.set_colors("sel")
-    aOSutils.draw_text(2,5,"@"..username.."#"..tostring(os.getComputerID()))
+    aOSutils.draw_text(2,7,"@"..username.."#"..string.format("%05d",os.getComputerID()))
+
     aOSutils.set_colors("ui")
-    aOSutils.draw_text_box(2,7,25,12)
-    aOSutils.draw_text(19,14,tostring(#input_text).." / 80")
+    aOSutils.draw_text_box(2,8,25,13)
+    aOSutils.draw_text(19,15,tostring(#input_text).." / 80")
+    
+    aOSutils.set_colors("ui")
+    if selected == 2 then aOSutils.set_colors("sel") end
+    aOSutils.draw_text(2,18,"Send")
+
+    aOSutils.set_colors("ui")
+    if selected == 3 then aOSutils.set_colors("sel") end
+    aOSutils.draw_text(22,18)
 end
 
 function send_tweet_menu()
