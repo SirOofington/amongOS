@@ -16,19 +16,53 @@ buttons = {}
 
 username = "SirOofington"
 
+function input_send_tweet_menu()
+    aOSutils.pull_event()
+    if selected ~= 1 then
+        if aOSutils.event_key_held(keys.left) or aOSutils.event_key_held(keys.right) then
+            selected = 5 - selected
+        end
+        if aOSutils.event_key_held(keys.up) or aOSutils.event_key_held(keys.down) then
+            selected = 1
+        end
+    end
+
+    while selected == 1 do
+        aOSutils.pull_event()
+        input_text = aOSutils.event_character_input(input_text)
+        if #input_text > 80 then
+            input_text = string.sub(input_text,1,-2)
+        end
+        if aOSutils.event_key_held(keys.up) or aOSutils.event_key_held(keys.down) then
+            selected = 2
+        end
+    end
+
+    if aOSutils.event_key_press(keys.enter) or aOSutils.event_key_press(keys.space) then
+        if buttons["main_menu"][selected]["func"] ~= nil then
+            buttons["main_menu"][selected]["func"]()
+        else
+            return true
+        end
+    end
+    return false
+end
+
 function draw_send_tweet_menu()
-    aOSutils.set_colors("title")
-    paintutils.drawFilledBox(2,3,13,5)
-    aOSutils.draw_text(3,4,"Send Tweet")
+    aOSutils.set_colors("ui")
+    aOSutils.draw_text(2,4,"Send Tweet")
 
     aOSutils.set_colors("sel")
     aOSutils.draw_text(2,7,"@"..username.."#"..string.format("%05d",os.getComputerID()))
 
     aOSutils.set_colors("ui")
+    if selected == 1 then aOSutils.set_colors("sel") end
     aOSutils.draw_text_box(2,8,25,13)
     aOSutils.draw_text(19,15,tostring(#input_text).." / 80")
-    
+
     aOSutils.set_colors("ui")
+    aOSutils.draw_wrapped_text(3,9,22,input_text)
+    
     if selected == 2 then aOSutils.set_colors("sel") end
     aOSutils.draw_text(2,18,buttons["send_tweet"][2])
 
@@ -38,11 +72,14 @@ function draw_send_tweet_menu()
 end
 
 function send_tweet_menu()
+    selected = 1
+    input_txt = ""
     while true do
         aOSutils.draw_header()
         draw_send_tweet_menu()
-        os.sleep(5)
-        break
+        if input_send_tweet_menu() then
+            break
+        end
     end
 end
 
@@ -112,6 +149,7 @@ buttons = {
 while true do
     aOSutils.set_theme(twt_theme)
     aOSutils.draw_header()
+    selected = 1
     draw_main_menu()
     if input_main_menu() then
         break
