@@ -18,7 +18,7 @@ buttons = {
         {name="Send Tweet",func=nil},
         {name="Profile",func=nil},
         {name="Exit",func=nil}
-    }
+    },
     send_tweet = {
         {name="Send",func=nil},
         {name="Exit",func=nil}
