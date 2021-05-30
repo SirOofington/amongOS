@@ -1,10 +1,10 @@
 twt_theme = {
     head_txt = colors.white,
-    head_bck = colors.cyan,
+    head_bck = colors.blue,
     ui_txt = colors.black,
     ui_bck = colors.white,
-    sel_txt = colors.white,
-    sel_bck = colors.lightBlue,
+    sel_txt = colors.lightBlue,
+    sel_bck = colors.white,
     title_txt = colors.white,
     title_bck = colors.blue
 }
@@ -15,7 +15,7 @@ buttons = {
     main_menu = {
         {name="Timeline",func=nil},
         {name="Send Tweet",func=nil},
-        {name="Edit Profile",func=nil},
+        {name="Profile",func=nil},
         {name="Exit",func=nil}
     }
 }
@@ -50,6 +50,9 @@ function draw_main_menu()
     aOSutils.set_colors("title")
     paintutils.drawFilledBox(2,5,25,7)
     aOSutils.draw_text(7,6,"T W I T T E R "..string.char(169))
+
+    aOSutils.set_colors("ui")
+    aOSutils.draw_text_box(1,12,aOSutils.w,12 + 2 * math.ceil(#buttons["main_menu"]/2))
 
     for i=1,#buttons["main_menu"] do
         

@@ -196,6 +196,37 @@ function event_character_input(str)
     return str
 end
 
+function draw_text_box(x1,y1,x2,y2)
+    local txt_map = {
+        top_left = 156
+        top_right = 148
+        bottom_left = 141
+        bottom_right = 133
+        horizontal = 140
+        vertical = 149
+    }
+    term.setCursorPos(x1,y1)
+    term.write(string.char(txt_map["top_left"]))
+    term.setCursorPos(x2,y1)
+    term.write(string.char(txt_map["top_right"]))
+    term.setCursorPos(x1,y2)
+    term.write(string.char(txt_map["bottom_left"]))
+    term.setCursorPos(x2,y2)
+    term.write(string.char(txt_map["bottom_right"]))
+    for i=x1+1,x2-1 do
+        term.setCursorPos(i,y1)
+        term.write(string.char(txt_map["horizontal"]))
+        term.setCursorPos(i,y2)
+        term.write(string.char(txt_map["horizontal"]))
+    end
+    for i=y1+1,y2-1 do
+        term.setCursorPos(x1,i)
+        term.write(string.char(txt_map["vertical"]))
+        term.setCursorPos(x2,i)
+        term.write(string.char(txt_map["vertical"]))
+    end
+end
+
 function draw_debug_text(str)
     set_colors("head")
     draw_text(1,h,str)
