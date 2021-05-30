@@ -112,6 +112,9 @@ function input_main_menu()
         selected = selected + 2
     end
     selected = ((selected - 1) % #buttons["main_menu"]) + 1
+
+    aOSutils.draw_debug_text(buttons["main_menu"][selected]["func"] ~= nil)
+
     if aOSutils.event_key_press(keys.enter) or aOSutils.event_key_press(keys.space) then
         if buttons["main_menu"][selected]["func"] ~= nil then
             buttons["main_menu"][selected]["func"]()
