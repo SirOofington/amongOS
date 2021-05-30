@@ -78,6 +78,8 @@ function send_tweet_menu()
         aOSutils.draw_header()
         draw_send_tweet_menu()
         if input_send_tweet_menu() then
+            selected = 1
+            input_txt = ""
             break
         end
     end
@@ -149,7 +151,6 @@ buttons = {
 while true do
     aOSutils.set_theme(twt_theme)
     aOSutils.draw_header()
-    selected = 1
     draw_main_menu()
     if input_main_menu() then
         break
