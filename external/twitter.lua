@@ -49,9 +49,9 @@ function input_send_tweet_menu()
         end
     end
 
-    if aOSutils.event_key_press(keys.enter) or aOSutils.event_key_press(keys.space) then
-        if buttons["main_menu"][selected]["func"] ~= nil then
-            buttons["main_menu"][selected]["func"]()
+    if (aOSutils.event_key_press(keys.enter) or aOSutils.event_key_press(keys.space)) and selected > 1 then
+        if buttons["main_menu"][selected - 1]["func"] ~= nil then
+            buttons["main_menu"][selected - 1]["func"]()
         else
             return true
         end
