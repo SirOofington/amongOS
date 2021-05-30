@@ -198,11 +198,11 @@ end
 
 function draw_text_box(x1,y1,x2,y2)
     local txt_map = {
-        top_left = 156
-        top_right = 148
-        bottom_left = 141
-        bottom_right = 133
-        horizontal = 140
+        top_left = 156,
+        top_right = 148,
+        bottom_left = 141,
+        bottom_right = 133,
+        horizontal = 140,
         vertical = 149
     }
     term.setCursorPos(x1,y1)
