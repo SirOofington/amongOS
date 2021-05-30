@@ -15,7 +15,7 @@ input_text = ""
 buttons = {
     main_menu = {
         {name="Timeline",func=nil},
-        {name="Send Tweet",func=nil},
+        {name="Send Tweet",func=send_tweet_menu},
         {name="Profile",func=nil},
         {name="Exit",func=nil}
     },
