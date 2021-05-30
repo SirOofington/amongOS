@@ -12,7 +12,18 @@ twt_theme = {
 selected = 1
 input_text = ""
 
-buttons = {}
+buttons = {
+    main_menu = {
+        {name="Timeline",func=nil},
+        {name="Send Tweet",func=send_tweet_menu},
+        {name="Profile",func=nil},
+        {name="Exit",func=nil}
+    },
+    send_tweet = {
+        {name="Send",func=nil},
+        {name="Exit",func=nil}
+    }
+}
 
 username = "SirOofington"
 
