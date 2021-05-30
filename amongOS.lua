@@ -249,6 +249,7 @@ function app_update()
         aOSutils.draw_text(string.len("Updating") + i,3,".")
     end
     os.sleep(0.5)
+    os.shutdown()
 end
 
 function app_terminate()
