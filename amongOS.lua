@@ -1,7 +1,6 @@
 success = os.loadAPI("aOSutils.lua")
 if not success then
-    print("Problem loading aOSutils.lua, exiting...")
-    exit()
+    error("Problem loading aOSutils.lua, exiting...")
 end
 
 os.pullEvent = os.pullEventRaw
@@ -45,19 +44,23 @@ function display_splash()
     term.clear()
     aOSutils.draw_text(10,3,aOSutils.os_name)
 
+    rand_color = math.random(1,4)
+    primaries = {colors.red,colors.cyan,colors.yellow,colors.lime}
+    secondaries = {colors.brown,colors.blue,colors.brown,colors.green}
+
     for i=1,#img do
         for j=1,#img[i] do
             local color = nil
             local pixel = string.sub(img[i],j,j)
 
             if pixel == "1" then
-                color = colors.red
+                color = primaries[rand_color]
             elseif pixel == "2" then
                 color = colors.lightBlue
             elseif pixel == "3" then
                 color = colors.white
             elseif pixel == "4" then
-                color = colors.brown
+                color = secondaries[rand_color]
             else
                 color = colors.black
             end
@@ -92,7 +95,6 @@ function load_external_apps()
             end
         end
     end
-    table.sort(apps)
 end
 
 function load_internal_apps()

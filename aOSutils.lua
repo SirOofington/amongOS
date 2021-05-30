@@ -30,7 +30,7 @@ end
 
 function draw_header()
     set_colors("ui")
-    paintutils.drawFilledBox(1,1,w,h,term.getBackgroundColor())
+    term.clear()
     set_colors("head")
     for i=1,w do
         paintutils.drawPixel(i,1,term.getBackgroundColor())
@@ -64,6 +64,9 @@ function pull_event(check_event)
 end
 
 function event_key_press(key_value)
+    if event[1] == "key" and key_value == nil and event[3] == false then
+        return event[2]
+    end
     if event[1] == "key" and event[2] == key_value and event[3] == false then
         return true
     end
@@ -71,6 +74,9 @@ function event_key_press(key_value)
 end
 
 function event_key_held(key_value)
+    if event[1] == "key" and key_value == nil then
+        return event[2]
+    end
     if event[1] == "key" and event[2] == key_value then
         return true
     end
@@ -78,6 +84,9 @@ function event_key_held(key_value)
 end
 
 function event_key_released(key_value)
+    if event[1] == "key" and key_value == nil then
+        return event[2]
+    end
     if event[1] == "key_up" and event[2] == key_value then
         return true
     end
@@ -175,6 +184,47 @@ function event_mouse_released_region(x1,y1,x2,y2,right_click)
         end
     end
     return false
+end
+
+function event_character_input(str)
+    if event[1] == "char" then
+        str = str..event[2]
+    end
+    if event[1] == "key" and event[2] == "backspace" then
+        str = string.sub(str,1,-2)
+    end
+    return str
+end
+
+function draw_text_box(x1,y1,x2,y2)
+    local txt_map = {
+        top_left = 156,
+        top_right = 148,
+        bottom_left = 141,
+        bottom_right = 133,
+        horizontal = 140,
+        vertical = 149
+    }
+    term.setCursorPos(x1,y1)
+    term.write(string.char(txt_map["top_left"]))
+    term.setCursorPos(x2,y1)
+    term.write(string.char(txt_map["top_right"]))
+    term.setCursorPos(x1,y2)
+    term.write(string.char(txt_map["bottom_left"]))
+    term.setCursorPos(x2,y2)
+    term.write(string.char(txt_map["bottom_right"]))
+    for i=x1+1,x2-1 do
+        term.setCursorPos(i,y1)
+        term.write(string.char(txt_map["horizontal"]))
+        term.setCursorPos(i,y2)
+        term.write(string.char(txt_map["horizontal"]))
+    end
+    for i=y1+1,y2-1 do
+        term.setCursorPos(x1,i)
+        term.write(string.char(txt_map["vertical"]))
+        term.setCursorPos(x2,i)
+        term.write(string.char(txt_map["vertical"]))
+    end
 end
 
 function draw_debug_text(str)
