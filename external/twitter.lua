@@ -10,6 +10,7 @@ twt_theme = {
 }
 
 selected = 1
+input_text = ""
 
 buttons = {
     main_menu = {
@@ -18,7 +19,32 @@ buttons = {
         {name="Profile",func=nil},
         {name="Exit",func=nil}
     }
+    send_tweet = {
+        {name="Send",func=nil},
+        {name="Exit",func=nil}
+    }
 }
+
+username = "SirOofington"
+
+function draw_send_tweet_menu()
+    aOSutils.set_colors("title")
+    aOSutils.draw_text(2,3,"Send Tweet")
+    aOSutils.set_colors("sel")
+    aOSutils.draw_text(2,5,"@"..username.."#"..tostring(os.getComputerID()))
+    aOSutils.set_colors("ui")
+    aOSutils.draw_text_box(2,7,25,12)
+    aOSutils.draw_text(19,14,tostring(#input_text).." / 80")
+end
+
+function send_tweet_menu()
+    while true do
+        aOSutils.draw_header()
+        draw_send_tweet_menu()
+        os.sleep(5)
+        break
+    end
+end
 
 function input_main_menu()
     aOSutils.pull_event()
@@ -50,9 +76,6 @@ function draw_main_menu()
     aOSutils.set_colors("title")
     paintutils.drawFilledBox(2,5,25,7)
     aOSutils.draw_text(7,6,"T W I T T E R "..string.char(169))
-
-    aOSutils.set_colors("ui")
-    aOSutils.draw_text_box(1,12,aOSutils.w,12 + 2 * math.ceil(#buttons["main_menu"]/2))
 
     for i=1,#buttons["main_menu"] do
         
