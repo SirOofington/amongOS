@@ -12,18 +12,7 @@ twt_theme = {
 selected = 1
 input_text = ""
 
-buttons = {
-    main_menu = {
-        {name="Timeline",func=nil},
-        {name="Send Tweet",func=send_tweet_menu},
-        {name="Profile",func=nil},
-        {name="Exit",func=nil}
-    },
-    send_tweet = {
-        {name="Send",func=nil},
-        {name="Exit",func=nil}
-    }
-}
+buttons = {}
 
 username = "SirOofington"
 
@@ -95,6 +84,19 @@ function draw_main_menu()
         aOSutils.draw_text(bx,by,buttons["main_menu"][i]["name"])
     end
 end
+
+buttons = {
+    main_menu = {
+        {name="Timeline",func=nil},
+        {name="Send Tweet",func=send_tweet_menu},
+        {name="Profile",func=nil},
+        {name="Exit",func=nil}
+    },
+    send_tweet = {
+        {name="Send",func=nil},
+        {name="Exit",func=nil}
+    }
+}
 
 while true do
     aOSutils.set_theme(twt_theme)
