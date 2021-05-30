@@ -12,18 +12,7 @@ twt_theme = {
 selected = 1
 input_text = ""
 
-buttons = {
-    main_menu = {
-        {name="Timeline",func=nil},
-        {name="Send Tweet",func=send_tweet_menu},
-        {name="Profile",func=nil},
-        {name="Exit",func=nil}
-    },
-    send_tweet = {
-        {name="Send",func=nil},
-        {name="Exit",func=nil}
-    }
-}
+buttons = {}
 
 username = "SirOofington"
 
@@ -75,11 +64,11 @@ function draw_send_tweet_menu()
     aOSutils.draw_wrapped_text(3,9,22,input_text)
     
     if selected == 2 then aOSutils.set_colors("sel") end
-    aOSutils.draw_text(2,18,buttons["send_tweet"][2])
+    aOSutils.draw_text(2,18,buttons["send_tweet"][1])
 
     aOSutils.set_colors("ui")
     if selected == 3 then aOSutils.set_colors("sel") end
-    aOSutils.draw_text(aOSutils.w - #buttons["send_tweet"][3] - 1,18,buttons["send_tweet"][3])
+    aOSutils.draw_text(aOSutils.w - #buttons["send_tweet"][2] - 1,18,buttons["send_tweet"][3])
 end
 
 function send_tweet_menu()
