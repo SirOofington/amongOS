@@ -242,3 +242,7 @@ function draw_debug_text(str)
     set_colors("head")
     draw_text(1,h,str)
 end
+
+function end_event()
+    event = {}
+end
