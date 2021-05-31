@@ -268,6 +268,5 @@ while true do
     term.clear()
     aOSutils.set_theme(home_theme)
     aOSutils.draw_header()
-    draw_apps()
-    cycle_apps()
+    parallel.waitForAny(draw_apps,cycle_apps)
 end
