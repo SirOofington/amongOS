@@ -109,19 +109,17 @@ function load_internal_apps()
 end
 
 function draw_apps()
-    while true do
-        aOSutils.draw_header()
-        for i=1,#apps do
-            aOSutils.set_colors("ui")
-            if i == selected_app then aOSutils.set_colors("sel") end
-            if apps[i]["hidden"] == nil or aOSutils.get_dev_mode() then
-                aOSutils.draw_text(3,i + 2,apps[i]["name"])
-                paintutils.drawPixel(1,i+2,apps[i]["ico"])
-            end
-        end
+    aOSutils.draw_header()
+    for i=1,#apps do
         aOSutils.set_colors("ui")
-        os.sleep(0.05)
+        if i == selected_app then aOSutils.set_colors("sel") end
+        if apps[i]["hidden"] == nil or aOSutils.get_dev_mode() then
+            aOSutils.draw_text(3,i + 2,apps[i]["name"])
+            paintutils.drawPixel(1,i+2,apps[i]["ico"])
+        end
     end
+    aOSutils.set_colors("ui")
+    os.sleep(0.05)
 end
 
 function cycle_apps()
@@ -270,4 +268,6 @@ load_internal_apps()
 
 term.clear()
 aOSutils.set_theme(home_theme)
-parallel.waitForAny(draw_apps,cycle_apps)
+while true do
+    parallel.waitForAny(draw_apps,cycle_apps)
+end
