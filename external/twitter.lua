@@ -24,10 +24,8 @@ function input_send_tweet_menu()
         end
         if aOSutils.event_key_held(keys.up) or aOSutils.event_key_held(keys.down) then
             selected = 1
-            aOSutils.end_event()
         end
     else
-        aOSutils.pull_event()
         input_text = aOSutils.event_character_input(input_text)
         if #input_text > 80 then
             input_text = string.sub(input_text,1,-2)
