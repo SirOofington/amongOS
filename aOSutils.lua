@@ -196,6 +196,17 @@ function event_character_input(str)
     return str
 end
 
+function draw_wrapped_text(x,y,length,str)
+    local new_str = ""
+    for i=1,#str do
+        new_str = new_str..string.sub(str,i,i)
+        if i % length == 0 then
+            new_str = new_str.."\n"
+        end
+    end
+    draw_text(x,y,new_str)
+end
+
 function draw_text_box(x1,y1,x2,y2)
     local txt_map = {
         top_left = 156,
